@@ -9,7 +9,7 @@
         <div class="col-lg-8">
 
           <!-- Title -->
-          <h1 class="mt-4">Post Title</h1>
+          <h1 class="mt-4">Page Title</h1>
 
           <!-- Author -->
           <p class="lead">

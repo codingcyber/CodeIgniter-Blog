@@ -10,7 +10,7 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-          <h1 class="my-4">Page Heading
+          <h1 class="my-4">Blog Home
             <small>Secondary Text</small>
           </h1>
 
