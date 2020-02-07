@@ -28,6 +28,10 @@ class Blog extends CI_Controller {
 
 	public function post(){
 		//echo "Blog Post Controller Method";
+
+		$this->load->model('blog_model');
+		$this->blog_model->getPost();
+
 		$this->load->helper('url');
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
