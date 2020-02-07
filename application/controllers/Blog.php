@@ -6,12 +6,12 @@ class Blog extends CI_Controller {
 		//echo "Blog Index Controller Method";
 
 		$this->load->model('blog_model');
-		$this->blog_model->getAllPosts();
+		$data['posts'] = $this->blog_model->getAllPosts();
 
 		$this->load->helper('url');
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
-		$this->load->view('frontend/home');
+		$this->load->view('frontend/home', $data);
 		$this->load->view('frontend/templates/sidebar');
 		$this->load->view('frontend/templates/footer');
 	}
