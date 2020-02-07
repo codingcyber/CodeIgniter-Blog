@@ -1,0 +1,25 @@
+DATABASE PLAN
+-------------
+
+posts
+-id
+-uid
+-title
+-content
+-status
+-slug
+-pic
+-created
+-updated
+
+categories
+
+post_categories
+
+pages
+
+comments
+
+widgets
+
+users
