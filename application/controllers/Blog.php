@@ -4,6 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Blog extends CI_Controller {
 	public function index(){
 		//echo "Blog Index Controller Method";
+
+		$this->load->model('blog_model');
+		$this->blog_model->getAllPosts();
+
 		$this->load->helper('url');
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
