@@ -16,8 +16,11 @@ class Blog_model extends CI_Model {
 	}
 
 	// Get Single Post for Blog Post Page
-	public function getPost(){
+	public function getPost($id){
 		$this->load->database();
+		$query = $this->db->get_where('posts', array('id' => $id));
+
+		return $query->row_array();
 	}
 
 	// Get Single Page for Blog Page
