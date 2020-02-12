@@ -13,6 +13,12 @@ posts
 -updated
 
 categories
+-id
+-title
+-description
+-slug
+-created
+-updated
 
 post_categories
 
