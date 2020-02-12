@@ -21,11 +21,15 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('slug', 'Slug', 'trim|required');
 
 		if($this->form_validation->run() == FALSE){
-			$this->session->set_flashdata('category', 'Failed to Add Category.');
+			$this->session->set_flashdata('category', '<div class="alert alert-danger">Failed to Add Category.</div>');
 		}else{
 			// insert into categories table
 			$this->load->model('admin_model');
-			$this->admin_model->insertCategory();
+			$res = $this->admin_model->insertCategory($title, $description, $slug);
+			if($res){
+				$this->session->set_flashdata('category', '<div class="alert alert-success">Category Added Successfully.</div>');
+				redirect('Admin/ViewCategories');
+			}
 		}
 
 		$this->load->view('admin/templates/header');

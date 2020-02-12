@@ -14,6 +14,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <?php echo $this->session->flashdata('category'); ?>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
