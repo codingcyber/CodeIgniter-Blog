@@ -9,7 +9,10 @@ class Admin extends CI_Controller {
 
 	// Categories - Add, Edit, Update, View, Delete
 	public function AddCategory(){
-		echo "Admin Add Category";
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/add-category');
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function EditCategory(){
@@ -20,8 +23,11 @@ class Admin extends CI_Controller {
 		echo "Admin Update Category";
 	}
 
-	public function ViewCategory(){
-		echo "Admin View Category";
+	public function ViewCategories(){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/view-categories');
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function DeleteCategory(){
