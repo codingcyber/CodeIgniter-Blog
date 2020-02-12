@@ -9,6 +9,9 @@ class Admin extends CI_Controller {
 
 	// Categories - Add, Edit, Update, View, Delete
 	public function AddCategory(){
+		$this->load->model('admin_model');
+		$this->admin_model->insertCategory();
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
 		$this->load->view('admin/add-category');
@@ -16,14 +19,19 @@ class Admin extends CI_Controller {
 	}
 
 	public function EditCategory(){
-		echo "Admin Edit Category";
+		$this->load->model('admin_model');
+		$this->admin_model->selectCategory();
 	}
 
 	public function UpdateCategory(){
-		echo "Admin Update Category";
+		$this->load->model('admin_model');
+		$this->admin_model->updateCategory();
 	}
 
 	public function ViewCategories(){
+		$this->load->model('admin_model');
+		$this->admin_model->selectCategories();
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
 		$this->load->view('admin/view-categories');
@@ -31,7 +39,8 @@ class Admin extends CI_Controller {
 	}
 
 	public function DeleteCategory(){
-		echo "Admin Delete Category";
+		$this->load->model('admin_model');
+		$this->admin_model->deleteCategory();
 	}
 
 	// Posts - Add, Edit, Update, View, Delete Post, Delete Post Pic
