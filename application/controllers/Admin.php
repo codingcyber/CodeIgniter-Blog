@@ -9,8 +9,24 @@ class Admin extends CI_Controller {
 
 	// Categories - Add, Edit, Update, View, Delete
 	public function AddCategory(){
-		$this->load->model('admin_model');
-		$this->admin_model->insertCategory();
+
+		$title = $this->input->post('title');
+		$description = $this->input->post('description');
+		$slug = $this->input->post('slug');
+
+		// Form Validations
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Title', 'trim|required');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required');
+		$this->form_validation->set_rules('slug', 'Slug', 'trim|required');
+
+		if($this->form_validation->run() == FALSE){
+			$this->session->set_flashdata('category', 'Failed to Add Category.');
+		}else{
+			// insert into categories table
+			$this->load->model('admin_model');
+			$this->admin_model->insertCategory();
+		}
 
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');

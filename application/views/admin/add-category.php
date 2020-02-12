@@ -13,28 +13,28 @@
                             Create a New Category Here...
                         </div>
                         <div class="panel-body">
+                            <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form role="form" method="post">
                                         <div class="form-group">
                                             <label>Category Title</label>
-                                            <input class="form-control" placeholder="Enter Article Title">
+                                            <input name="title" class="form-control" placeholder="Enter Article Title" value="<?php echo set_value('title'); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Article Description</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea name="description" class="form-control" rows="3"><?php echo set_value('description'); ?></textarea>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>Category Image</label>
                                             <input type="file">
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label>Category Slug</label>
-                                            <input class="form-control" placeholder="Enter Category Slug Here">
+                                            <input name="slug" class="form-control" placeholder="Enter Category Slug Here" value="<?php echo set_value('slug'); ?>">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="reset" class="btn btn-danger">Reset </button>
+                                        <input type="submit" class="btn btn-primary" value="Submit" />
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->   
