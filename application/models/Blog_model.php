@@ -4,7 +4,7 @@ class Blog_model extends CI_Model {
 
 	// Get All the Posts for Blog Index page
 	public function getAllPosts(){
-		$this->load->database();
+		//$this->load->database();
 		$query = $this->db->get('posts');
 
 		return $query->result_array();
@@ -17,7 +17,7 @@ class Blog_model extends CI_Model {
 
 	// Get Single Post for Blog Post Page
 	public function getPost($id){
-		$this->load->database();
+		//$this->load->database();
 		$query = $this->db->get_where('posts', array('id' => $id));
 
 		return $query->row_array();
