@@ -8,7 +8,9 @@ class Admin_model extends CI_Model {
 	}
 
 	public function selectCategories(){
-		
+		$query = $this->db->get('categories');
+
+		return $query->result_array();
 	}
 
 	public function selectCategory(){

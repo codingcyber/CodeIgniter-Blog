@@ -50,11 +50,11 @@ class Admin extends CI_Controller {
 
 	public function ViewCategories(){
 		$this->load->model('admin_model');
-		$this->admin_model->selectCategories();
+		$data['categories'] = $this->admin_model->selectCategories();
 
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
-		$this->load->view('admin/view-categories');
+		$this->load->view('admin/view-categories', $data);
 		$this->load->view('admin/templates/footer');
 	}
 

@@ -23,31 +23,19 @@
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Slug</th>
-                                            <th>Count</th>
+                                            <th>Operations</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach ($categories as $category) { ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
+                                            <td><?php echo $category['id']; ?></td>
+                                            <td><?php echo $category['title']; ?></td>
+                                            <td><?php echo $category['description']; ?></td>
+                                            <td><?php echo $category['slug']; ?></td>
+                                            <td><a href="EditCategory/<?php echo $category['id']; ?>">Edit</a> | <a href="DeleteCategory/<?php echo $category['id']; ?>">Delete</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>@mdo</td>
-                                        </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
