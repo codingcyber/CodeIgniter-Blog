@@ -21,8 +21,9 @@ class Admin_model extends CI_Model {
 		
 	}
 
-	public function deleteCategory(){
-		
+	public function deleteCategory($id){
+		$query = $this->db->delete('categories', array('id' => $id));
+		return $query;
 	}
 
 	// Posts

@@ -58,9 +58,14 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 
-	public function DeleteCategory(){
+	public function DeleteCategory($id){
+		echo $id;
 		$this->load->model('admin_model');
-		$this->admin_model->deleteCategory();
+		$res = $this->admin_model->deleteCategory($id);
+		if($res){
+			$this->session->set_flashdata('category', '<div class="alert alert-success">Category Deleted Successfully.</div>');
+			redirect('Admin/ViewCategories');
+		}
 	}
 
 	// Posts - Add, Edit, Update, View, Delete Post, Delete Post Pic
