@@ -38,9 +38,14 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 
-	public function EditCategory(){
+	public function EditCategory($id){
 		$this->load->model('admin_model');
-		$this->admin_model->selectCategory();
+		$data['category'] = $this->admin_model->selectCategory($id);
+
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/edit-category', $data);
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function UpdateCategory(){

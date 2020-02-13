@@ -13,8 +13,9 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function selectCategory(){
-		
+	public function selectCategory($id){
+		$query = $this->db->get_where('categories', array('id' => $id));
+		return $query->row_array();
 	}
 
 	public function updateCategory(){
