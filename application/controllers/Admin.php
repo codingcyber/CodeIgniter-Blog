@@ -97,12 +97,25 @@ class Admin extends CI_Controller {
 
 	// Posts - Add, Edit, Update, View, Delete Post, Delete Post Pic
 	public function AddPost(){
-		echo $title = $this->input->post('title');
-		echo $content = $this->input->post('content');
+		$title = $this->input->post('title');
+		$content = $this->input->post('content');
 		$categories = $this->input->post('categories');
-		echo $status = $this->input->post('status');
-		echo $slug = $this->input->post('slug');
-		var_dump($categories);
+		$status = $this->input->post('status');
+		$slug = $this->input->post('slug');
+
+		// Form Validations
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Title', 'trim|required');
+		$this->form_validation->set_rules('content', 'Content', 'trim|required');
+		$this->form_validation->set_rules('categories[]', 'Categories', 'trim|alpha_dash|required');
+		$this->form_validation->set_rules('status', 'Status', 'trim|alpha_dash|required');
+		$this->form_validation->set_rules('slug', 'Slug', 'trim|alpha_dash|required');
+		
+		if($this->form_validation->run() == FALSE){
+			// $this->session->set_flashdata('category', '<div class="alert alert-danger">Failed to Add Category.</div>');
+		}else{
+			// Insert into Posts table
+		}
 
 		$this->load->model('admin_model');
 		$data['categories'] = $this->admin_model->selectCategories();
