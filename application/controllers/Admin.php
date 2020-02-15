@@ -96,6 +96,34 @@ class Admin extends CI_Controller {
 	}
 
 	// Posts - Add, Edit, Update, View, Delete Post, Delete Post Pic
+	public function AddPost(){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/add-post');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function EditPost($id){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		//$this->load->view('admin/view-categories', $data);
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function UpdatePost(){
+
+	}
+
+	public function ViewPosts(){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/view-posts');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function DeletePost($id){
+
+	}
 
 	// Pages - Add, Edit, Update, View, Delete Page, Delete Page Pic
 
