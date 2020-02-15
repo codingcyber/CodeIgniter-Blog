@@ -18,8 +18,9 @@ class Admin_model extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function updateCategory(){
-		
+	public function updateCategory($title, $description, $slug, $id){
+		$query = $this->db->query("UPDATE categories SET title='$title', description='$description', slug='$slug', updated=NOW() WHERE id=$id");
+		return $query;
 	}
 
 	public function deleteCategory($id){

@@ -49,8 +49,18 @@ class Admin extends CI_Controller {
 	}
 
 	public function UpdateCategory(){
+
+		echo $title = $this->input->post('title');
+		echo $description = $this->input->post('description');
+		echo $slug = $this->input->post('slug');
+		echo $id = $this->input->post('id');
+
 		$this->load->model('admin_model');
-		$this->admin_model->updateCategory();
+		$res = $this->admin_model->updateCategory($title, $description, $slug, $id);
+		if($res){
+			$this->session->set_flashdata('category', '<div class="alert alert-success">Category Updated Successfully.</div>');
+			redirect('Admin/ViewCategories');
+		}
 	}
 
 	public function ViewCategories(){
