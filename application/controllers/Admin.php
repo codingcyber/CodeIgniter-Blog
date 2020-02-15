@@ -18,7 +18,7 @@ class Admin extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('title', 'Title', 'trim|required');
 		$this->form_validation->set_rules('description', 'Description', 'trim|required');
-		$this->form_validation->set_rules('slug', 'Slug', 'trim|required');
+		$this->form_validation->set_rules('slug', 'Slug', 'trim|alpha_dash|required');
 
 		if($this->form_validation->run() == FALSE){
 			$this->session->set_flashdata('category', '<div class="alert alert-danger">Failed to Add Category.</div>');
@@ -50,16 +50,28 @@ class Admin extends CI_Controller {
 
 	public function UpdateCategory(){
 
-		echo $title = $this->input->post('title');
-		echo $description = $this->input->post('description');
-		echo $slug = $this->input->post('slug');
-		echo $id = $this->input->post('id');
+		$title = $this->input->post('title');
+		$description = $this->input->post('description');
+		$slug = $this->input->post('slug');
+		$id = $this->input->post('id');
 
-		$this->load->model('admin_model');
-		$res = $this->admin_model->updateCategory($title, $description, $slug, $id);
-		if($res){
-			$this->session->set_flashdata('category', '<div class="alert alert-success">Category Updated Successfully.</div>');
-			redirect('Admin/ViewCategories');
+		// Form Validations
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Title', 'trim|required');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required');
+		$this->form_validation->set_rules('slug', 'Slug', 'trim|alpha_dash|required');
+
+		if($this->form_validation->run() == FALSE){
+			//$this->session->set_flashdata('category', '<div class="alert alert-danger">Failed to Update Category.</div>');
+			$this->EditCategory($id);
+		}else{
+
+			$this->load->model('admin_model');
+			$res = $this->admin_model->updateCategory($title, $description, $slug, $id);
+			if($res){
+				$this->session->set_flashdata('category', '<div class="alert alert-success">Category Updated Successfully.</div>');
+				redirect('Admin/ViewCategories');
+			}
 		}
 	}
 
