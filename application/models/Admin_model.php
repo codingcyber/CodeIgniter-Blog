@@ -29,6 +29,11 @@ class Admin_model extends CI_Model {
 	}
 
 	// Posts
+	public function selectPosts(){
+		$query = $this->db->get('posts');
+
+		return $query->result_array();
+	}
 
 	// Pages
 

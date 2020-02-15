@@ -115,9 +115,12 @@ class Admin extends CI_Controller {
 	}
 
 	public function ViewPosts(){
+		$this->load->model('admin_model');
+		$data['posts'] = $this->admin_model->selectPosts();
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
-		$this->load->view('admin/view-posts');
+		$this->load->view('admin/view-posts', $data);
 		$this->load->view('admin/templates/footer');
 	}
 

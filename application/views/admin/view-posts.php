@@ -20,37 +20,25 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Title</th>
-                                            <th>Author</th>
                                             <th>Categories</th>
+                                            <th>Image</th>
                                             <th>Date</th>
                                             <th>Status</th>
+                                            <th>Operations</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach ($posts as $post) { ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
+                                            <td><?php echo $post['id']; ?></td>
+                                            <td><?php echo $post['title']; ?></td>
+                                            <td>Categories</td>
+                                            <td><?php if(!empty($post['pic'])){ echo "Yes"; }else{ echo "No"; } ?></td>
+                                            <td><?php echo $post['created']; ?></td>
+                                            <td><?php echo $post['status']; ?></td>
+                                            <td><a href="EditPost/<?php echo $post['id']; ?>">Edit</a> | <a href="DeletePost/<?php echo $post['id']; ?>">Delete</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                        </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
