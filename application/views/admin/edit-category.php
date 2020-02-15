@@ -16,7 +16,10 @@
                             <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="http://localhost/CodeIgniter-Blog/index.php/Admin/UpdateCategory" method="post">
+                                    <?php 
+                                    $attributes = array('role' => 'form');
+                                    echo form_open('Admin/UpdateCategory', $attributes); ?>
+                                    <!-- <form role="form" action="http://localhost/CodeIgniter-Blog/index.php/Admin/UpdateCategory" method="post"> -->
                                         <input type="hidden" name="id" value="<?php echo $category['id']; ?>">
                                         <div class="form-group">
                                             <label>Category Title</label>

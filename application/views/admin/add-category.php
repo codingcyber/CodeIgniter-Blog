@@ -16,7 +16,10 @@
                             <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" method="post">
+                                    <?php 
+                                    $attributes = array('role' => 'form');
+                                    echo form_open('', $attributes); ?>
+                                    <!-- <form role="form" method="post"> -->
                                         <div class="form-group">
                                             <label>Category Title</label>
                                             <input name="title" class="form-control" placeholder="Enter Article Title" value="<?php echo set_value('title'); ?>">
