@@ -33,18 +33,16 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Categories</label>
-                                                    <select name="categories[]" multiple="" class="form-control">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Categories</label>
+                                                <select name="categories[]" multiple="" class="form-control">
+                                                    <?php foreach ($categories as $category) { ?>
+                                                    <option value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
+                                        </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Article Status</label>
