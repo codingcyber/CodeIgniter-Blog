@@ -15,25 +15,28 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <?php 
+                                    $attributes = array('role' => 'form');
+                                    echo form_open('', $attributes); ?>
+                                    <!-- <form role="form" method="post"> -->
                                         <div class="form-group">
                                             <label>Article Title</label>
-                                            <input class="form-control" placeholder="Enter Article Title">
+                                            <input name="title" class="form-control" placeholder="Enter Article Title">
                                         </div>
                                         <div class="form-group">
                                             <label>Article Content</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea name="content" class="form-control" rows="3"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Featured Image</label>
-                                            <input type="file">
+                                            <input name="image" type="file">
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Categories</label>
-                                                    <select multiple="" class="form-control">
+                                                    <select name="categories[]" multiple="" class="form-control">
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -47,17 +50,17 @@
                                                     <label>Article Status</label>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Draft
+                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios1" value="draft" checked="">Draft
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Pending Review
+                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios2" value="review">Pending Review
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Published
+                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios3" value="published">Published
                                                         </label>
                                                     </div>
                                                 </div>
@@ -65,7 +68,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Article Slug</label>
-                                            <input class="form-control" placeholder="Enter Article Slug Here">
+                                            <input name="slug" class="form-control" placeholder="Enter Article Slug Here">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-danger">Reset </button>
