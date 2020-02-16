@@ -21,6 +21,10 @@ categories
 -updated
 
 post_categories
+-id
+-pid
+-cid
+-created
 
 pages
 

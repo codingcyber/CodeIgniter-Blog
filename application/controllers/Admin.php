@@ -116,7 +116,7 @@ class Admin extends CI_Controller {
 		}else{
 			// Insert into Posts table
 			$this->load->model('admin_model');
-			$res = $this->admin_model->insertPost($title, $content, $status, $slug);
+			$res = $this->admin_model->insertPost($title, $content, $status, $slug, $categories);
 			if($res){
 				$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Added Successfully.</div>');
 				redirect('Admin/ViewPosts');

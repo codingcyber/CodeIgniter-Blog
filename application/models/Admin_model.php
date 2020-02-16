@@ -35,9 +35,17 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function insertPost($title, $content, $status, $slug){
+	public function insertPost($title, $content, $status, $slug, $categories){
 		$query = $this->db->query("INSERT INTO posts (title, content, status, slug) VALUES ('$title', '$content', '$status', '$slug')");
+		$postid = $this->db->insert_id();
+		$this->insertPostCategories($categories, $postid);
 		return $query;
+	}
+
+	public function insertPostCategories($categories, $postid){
+		foreach ($categories as $category) {
+			$query = $this->db->query("INSERT INTO post_categories (cid, pid) VALUES ('$category', '$postid')");
+		}
 	}
 
 	// Pages
