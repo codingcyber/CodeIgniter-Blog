@@ -119,9 +119,10 @@ class Admin extends CI_Controller {
 		}else{
 			$upload = $this->fileUpload('image');
 			// Insert into Posts table
-			if($upload){
+			if($upload['response']){
+				$filename = $upload['uploadresponse']['file_name'];
 				$this->load->model('admin_model');
-				$res = $this->admin_model->insertPost($title, $content, $status, $slug, $categories);
+				$res = $this->admin_model->insertPost($title, $content, $status, $slug, $categories, $filename);
 				if($res){
 					$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Added Successfully.</div>');
 					redirect('Admin/ViewPosts');
@@ -147,12 +148,14 @@ class Admin extends CI_Controller {
 
         if ( ! $this->upload->do_upload($file))
         {
-                return false;
+        		$data['response'] = false;
+                return $data;
         }
         else
         {
-               //var_dump($this->upload->data());
-               return true;
+        		$data['response'] = true;
+               	$data['uploadresponse'] = $this->upload->data();
+               	return $data;
         }
     }
 
