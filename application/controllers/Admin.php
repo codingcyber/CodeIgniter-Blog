@@ -110,16 +110,22 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('categories[]', 'Categories', 'trim|alpha_dash|required');
 		$this->form_validation->set_rules('status', 'Status', 'trim|alpha_dash|required');
 		$this->form_validation->set_rules('slug', 'Slug', 'trim|alpha_dash|required');
+		if(empty($_FILES['image']['name'])){
+			$this->form_validation->set_rules('image', 'Image', 'required');
+		}
 		
 		if($this->form_validation->run() == FALSE){
 			// $this->session->set_flashdata('category', '<div class="alert alert-danger">Failed to Add Category.</div>');
 		}else{
+			$upload = $this->fileUpload('image');
 			// Insert into Posts table
-			$this->load->model('admin_model');
-			$res = $this->admin_model->insertPost($title, $content, $status, $slug, $categories);
-			if($res){
-				$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Added Successfully.</div>');
-				redirect('Admin/ViewPosts');
+			if($upload){
+				$this->load->model('admin_model');
+				$res = $this->admin_model->insertPost($title, $content, $status, $slug, $categories);
+				if($res){
+					$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Added Successfully.</div>');
+					redirect('Admin/ViewPosts');
+				}
 			}
 		}
 
@@ -130,6 +136,25 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/add-post', $data);
 		$this->load->view('admin/templates/footer');
 	}
+
+	public function fileUpload($file)
+    {
+        $config['upload_path']          = './assets/media/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['encrypt_name']         = TRUE;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload($file))
+        {
+                return false;
+        }
+        else
+        {
+               //var_dump($this->upload->data());
+               return true;
+        }
+    }
 
 	public function EditPost($id){
 		$this->load->view('admin/templates/header');

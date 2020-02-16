@@ -18,7 +18,7 @@
                                 <div class="col-lg-12">
                                     <?php 
                                     $attributes = array('role' => 'form');
-                                    echo form_open('', $attributes); ?>
+                                    echo form_open_multipart('', $attributes); ?>
                                     <!-- <form role="form" method="post"> -->
                                         <div class="form-group">
                                             <label>Article Title</label>
