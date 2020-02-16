@@ -35,6 +35,11 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function insertPost($title, $content, $status, $slug){
+		$query = $this->db->query("INSERT INTO posts (title, content, status, slug) VALUES ('$title', '$content', '$status', '$slug')");
+		return $query;
+	}
+
 	// Pages
 
 	// Users
