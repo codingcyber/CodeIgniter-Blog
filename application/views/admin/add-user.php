@@ -13,30 +13,34 @@
                             Create a New User Here...
                         </div>
                         <div class="panel-body">
+                            <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <?php 
+                                    $attributes = array('role' => 'form');
+                                    echo form_open('', $attributes); ?>
+                                    <!-- <form role="form"> -->
                                         <div class="form-group">
                                             <label>User Name</label>
-                                            <input class="form-control" placeholder="Enter User Name">
+                                            <input name="username" class="form-control" placeholder="Enter User Name" value="<?php echo set_value('username'); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>E-Mail</label>
-                                            <input type="email" class="form-control" placeholder="Enter E-Mail">
+                                            <input name="email" type="email" class="form-control" placeholder="Enter E-Mail" value="<?php echo set_value('email'); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" placeholder="Enter First Name">
+                                            <input name="fname" class="form-control" placeholder="Enter First Name" value="<?php echo set_value('fname'); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" placeholder="Enter Last Name">
+                                            <input name="lname" class="form-control" placeholder="Enter Last Name" value="<?php echo set_value('lname'); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input class="form-control" placeholder="Enter User Password">
+                                            <input type="password" name="password" class="form-control" placeholder="Enter User Password">
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>User Role</label>
                                             <select class="form-control">
                                                 <option>Select User Role</option>
@@ -44,7 +48,7 @@
                                                 <option>Editor</option>
                                                 <option>Administrator</option>
                                             </select>
-                                        </div>
+                                        </div> -->
 
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-danger">Reset </button>
