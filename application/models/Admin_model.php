@@ -73,8 +73,13 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function updatePost($title, $content, $status, $slug, $categories, $id){
-		$query = $this->db->query("UPDATE posts SET title='$title', content='$content', status='$status', slug='$slug', updated=NOW() WHERE id=$id");
+	public function updatePost($title, $content, $status, $slug, $categories, $filename, $id){
+		$this->deletePostCategories($id);
+		$this->insertPostCategories($categories, $id);
+		$sql = "UPDATE posts SET title='$title', content='$content', status='$status', slug='$slug', ";
+		if(!empty($filename)){$sql .= "pic='$filename', ";}
+		$sql .= "updated=NOW() WHERE id=$id";
+		$query = $this->db->query($sql);
 		return $query;
 	}
 

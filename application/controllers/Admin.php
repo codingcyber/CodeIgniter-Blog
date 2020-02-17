@@ -193,9 +193,11 @@ class Admin extends CI_Controller {
 			// Insert into Posts table
 			if($upload['response']){
 				$filename = $upload['uploadresponse']['file_name'];
+			}else{
+				$filename = "";
 			}
 			$this->load->model('admin_model');
-			$res = $this->admin_model->updatePost($title, $content, $status, $slug, $categories, $id);
+			$res = $this->admin_model->updatePost($title, $content, $status, $slug, $categories, $filename, $id);
 			if($res){
 				$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Updated Successfully.</div>');
 				redirect('Admin/ViewPosts');
