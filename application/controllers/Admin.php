@@ -162,7 +162,8 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model');
 		$data['post'] = $this->admin_model->selectPost($id);
 		$data['categories'] = $this->admin_model->selectCategories();
-
+		$data['catids'] = $this->admin_model->postCategories($id);
+		
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
 		$this->load->view('admin/edit-post', $data);

@@ -68,6 +68,11 @@ class Admin_model extends CI_Model {
 		//return $query;
 	}
 
+	public function postCategories($pid){
+		$query = $this->db->get_where('post_categories', array('pid' => $pid));
+		return $query->result_array();
+	}
+
 	// Pages
 
 	// Users

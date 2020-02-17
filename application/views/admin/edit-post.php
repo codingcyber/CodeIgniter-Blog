@@ -43,7 +43,7 @@
                                                     <label>Categories</label>
                                                     <select name="categories[]" multiple="" class="form-control">
                                                         <?php foreach ($categories as $category) { ?>
-                                                        <option value="<?php echo $category['id']; ?>" <?php echo set_select('categories', $category['id']) ?>><?php echo $category['title']; ?></option>
+                                                        <option value="<?php echo $category['id']; ?>" <?php if(in_array($category['id'], array_column($catids, 'cid'))){ echo "selected"; } ?>><?php echo $category['title']; ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
@@ -53,17 +53,17 @@
                                                     <label>Article Status</label>
                                                     <div class="radio">
                                                         <label>
-                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios1" value="draft" <?php echo set_radio('status', 'draft', TRUE); ?>>Draft
+                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios1" value="draft" <?php if($post['status'] == "draft"){ echo "checked"; }; ?>>Draft
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios2" value="review" <?php echo set_radio('status', 'review', TRUE); ?>>Pending Review
+                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios2" value="review" <?php if($post['status'] == "review"){ echo "checked"; }; ?>>Pending Review
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios3" value="published" <?php echo set_radio('status', 'published', TRUE); ?>>Published
+                                                            <input name="status" type="radio" name="optionsRadios" id="optionsRadios3" value="published" <?php if($post['status'] == "published"){ echo "checked"; }; ?>>Published
                                                         </label>
                                                     </div>
                                                 </div>
