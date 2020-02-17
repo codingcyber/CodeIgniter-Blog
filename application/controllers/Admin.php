@@ -244,6 +244,32 @@ class Admin extends CI_Controller {
 	// Pages - Add, Edit, Update, View, Delete Page, Delete Page Pic
 
 	// Users - Add, Edit, Update, View, Delete
+	public function AddUser(){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/add-user');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function EditUser($id){
+
+	}
+
+	public function UpdateUser(){
+
+	}
+
+	public function ViewUsers(){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/view-users');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function DeleteUser($id){
+
+	}
+
 
 	// Widgets - Add, Edit, Update, View, Delete
 }
