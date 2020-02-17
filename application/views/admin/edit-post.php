@@ -22,16 +22,20 @@
                                     <!-- <form role="form" method="post"> -->
                                         <div class="form-group">
                                             <label>Article Title</label>
-                                            <input name="title" class="form-control" placeholder="Enter Article Title" value="<?php echo set_value('title'); ?>">
+                                            <input name="title" class="form-control" placeholder="Enter Article Title" value="<?php echo $post['title']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Article Content</label>
-                                            <textarea name="content" class="form-control" rows="3"><?php echo set_value('content'); ?></textarea>
+                                            <textarea name="content" class="form-control" rows="3"><?php echo $post['content']; ?></textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Featured Image</label>
-                                            <input name="image" type="file">
-                                        </div>
+    <div class="form-group">
+        <label>Featured Image</label>
+        <?php if(!empty($post['pic'])){ ?>
+        <img src="<?php echo base_url('assets/media/').$post['pic']; ?>" height="50"> <a href="<?php echo base_url('index.php/Admin/DeletePostPic/').$post['id']; ?>">Delete Pic </a>
+        <?php }else{ ?>
+        <input name="image" type="file">
+        <?php } ?>
+    </div>
 
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -67,7 +71,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Article Slug</label>
-                                            <input name="slug" class="form-control" placeholder="Enter Article Slug Here" value="<?php echo set_value('slug'); ?>">
+                                            <input name="slug" class="form-control" placeholder="Enter Article Slug Here" value="<?php echo $post['slug']; ?>">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-danger">Reset </button>
