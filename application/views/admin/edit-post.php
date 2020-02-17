@@ -18,8 +18,9 @@
                                 <div class="col-lg-12">
                                     <?php 
                                     $attributes = array('role' => 'form');
-                                    echo form_open_multipart('', $attributes); ?>
+                                    echo form_open_multipart('Admin/UpdatePost', $attributes); ?>
                                     <!-- <form role="form" method="post"> -->
+                                        <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
                                         <div class="form-group">
                                             <label>Article Title</label>
                                             <input name="title" class="form-control" placeholder="Enter Article Title" value="<?php echo $post['title']; ?>">

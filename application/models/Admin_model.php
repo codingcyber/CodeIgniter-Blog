@@ -73,6 +73,11 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function updatePost($title, $content, $status, $slug, $categories, $id){
+		$query = $this->db->query("UPDATE posts SET title='$title', content='$content', status='$status', slug='$slug', updated=NOW() WHERE id=$id");
+		return $query;
+	}
+
 	// Pages
 
 	// Users

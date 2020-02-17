@@ -107,15 +107,15 @@ class Admin extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('title', 'Title', 'trim|required');
 		$this->form_validation->set_rules('content', 'Content', 'trim|required');
-		$this->form_validation->set_rules('categories[]', 'Categories', 'trim|alpha_dash|required');
-		$this->form_validation->set_rules('status', 'Status', 'trim|alpha_dash|required');
+		$this->form_validation->set_rules('categories[]', 'Categories', 'trim|required');
+		$this->form_validation->set_rules('status', 'Status', 'trim|required');
 		$this->form_validation->set_rules('slug', 'Slug', 'trim|alpha_dash|required');
 		if(empty($_FILES['image']['name'])){
 			$this->form_validation->set_rules('image', 'Image', 'required');
 		}
 		
 		if($this->form_validation->run() == FALSE){
-			// $this->session->set_flashdata('category', '<div class="alert alert-danger">Failed to Add Category.</div>');
+			// nothing to do
 		}else{
 			$upload = $this->fileUpload('image');
 			// Insert into Posts table
@@ -163,7 +163,7 @@ class Admin extends CI_Controller {
 		$data['post'] = $this->admin_model->selectPost($id);
 		$data['categories'] = $this->admin_model->selectCategories();
 		$data['catids'] = $this->admin_model->postCategories($id);
-		
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
 		$this->load->view('admin/edit-post', $data);
@@ -171,7 +171,36 @@ class Admin extends CI_Controller {
 	}
 
 	public function UpdatePost(){
+		$title = $this->input->post('title');
+		$content = $this->input->post('content');
+		$categories = $this->input->post('categories');
+		$status = $this->input->post('status');
+		$slug = $this->input->post('slug');
+		$id = $this->input->post('id');
 
+		// Form Validations
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Title', 'trim|required');
+		$this->form_validation->set_rules('content', 'Content', 'trim|required');
+		$this->form_validation->set_rules('categories[]', 'Categories', 'trim|required');
+		$this->form_validation->set_rules('status', 'Status', 'trim|required');
+		$this->form_validation->set_rules('slug', 'Slug', 'trim|alpha_dash|required');
+
+		if($this->form_validation->run() == FALSE){
+			// nothing to do
+		}else{
+			$upload = $this->fileUpload('image');
+			// Insert into Posts table
+			if($upload['response']){
+				$filename = $upload['uploadresponse']['file_name'];
+			}
+			$this->load->model('admin_model');
+			$res = $this->admin_model->updatePost($title, $content, $status, $slug, $categories, $id);
+			if($res){
+				$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Updated Successfully.</div>');
+				redirect('Admin/ViewPosts');
+			}
+		}
 	}
 
 	public function ViewPosts(){
