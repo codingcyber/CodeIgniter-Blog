@@ -250,24 +250,24 @@ class Admin extends CI_Controller {
 		$fname = $this->input->post('fname');
 		$lname = $this->input->post('lname');
 		$email = $this->input->post('email');
-		$password = $this->input->post('password');
+		$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 		// Form Validations
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('username', 'User Name', 'trim|required');
-		$this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email');
+		$this->form_validation->set_rules('username', 'User Name', 'trim|required|is_unique[users.username]');
+		$this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 		if($this->form_validation->run() == FALSE){
 			//nothing to do
 		}else{
 			// insert into users table
-			// $this->load->model('admin_model');
-			// $res = $this->admin_model->insertCategory($title, $description, $slug);
-			// if($res){
-			// 	$this->session->set_flashdata('category', '<div class="alert alert-success">Category Added Successfully.</div>');
-			// 	redirect('Admin/ViewCategories');
-			// }
+			$this->load->model('admin_model');
+			$res = $this->admin_model->insertUser($username, $fname, $lname, $email, $password);
+			if($res){
+				$this->session->set_flashdata('user', '<div class="alert alert-success">User Added Successfully.</div>');
+				redirect('Admin/ViewUsers');
+			}
 		}
 
 		$this->load->view('admin/templates/header');
