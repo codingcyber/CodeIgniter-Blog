@@ -162,7 +162,7 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model');
 		$data['post'] = $this->admin_model->selectPost($id);
 		$data['categories'] = $this->admin_model->selectCategories();
-		
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
 		$this->load->view('admin/edit-post', $data);
@@ -197,6 +197,16 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Deleted Successfully.</div>');
 			redirect('Admin/ViewPosts');
 		}
+	}
+
+	public function deletePostPic($id){
+		$this->load->model('admin_model');
+		$post = $this->admin_model->selectPost($id);
+		//var_dump($post);
+		$filepath = "./assets/media/".$post['pic'];
+		unlink($filepath);
+		$this->admin_model->deletePostPic($id);
+		redirect('Admin/EditPost/'.$id);
 	}
 
 	// Pages - Add, Edit, Update, View, Delete Page, Delete Page Pic

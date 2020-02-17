@@ -28,14 +28,14 @@
                                             <label>Article Content</label>
                                             <textarea name="content" class="form-control" rows="3"><?php echo $post['content']; ?></textarea>
                                         </div>
-    <div class="form-group">
-        <label>Featured Image</label>
-        <?php if(!empty($post['pic'])){ ?>
-        <img src="<?php echo base_url('assets/media/').$post['pic']; ?>" height="50"> <a href="<?php echo base_url('index.php/Admin/DeletePostPic/').$post['id']; ?>">Delete Pic </a>
-        <?php }else{ ?>
-        <input name="image" type="file">
-        <?php } ?>
-    </div>
+                                        <div class="form-group">
+                                            <label>Featured Image</label>
+                                            <?php if(!empty($post['pic'])){ ?>
+                                            <img src="<?php echo base_url('assets/media/').$post['pic']; ?>" height="50"> <a href="<?php echo base_url('index.php/Admin/DeletePostPic/').$post['id']; ?>">Delete Pic </a>
+                                            <?php }else{ ?>
+                                            <input name="image" type="file">
+                                            <?php } ?>
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-lg-6">

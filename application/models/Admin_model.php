@@ -63,6 +63,11 @@ class Admin_model extends CI_Model {
 		return $query;
 	}
 
+	public function deletePostPic($id){
+		$query = $this->db->query("UPDATE posts SET pic='', updated=NOW() WHERE id=$id");
+		//return $query;
+	}
+
 	// Pages
 
 	// Users
