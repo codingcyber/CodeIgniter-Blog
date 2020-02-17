@@ -14,43 +14,28 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <?php echo $this->session->flashdata('user'); ?>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>User Name</th>
-                                            <th>Name</th>
+                                            <th>Full Name</th>
                                             <th>E-Mail</th>
-                                            <th>Role</th>
-                                            <th>Articles</th>
+                                            <th>Operations</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach ($users as $user) { ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
+                                            <td><?php echo $user['id']; ?></td>
+                                            <td><?php echo $user['username']; ?></td>
+                                            <td><?php echo $user['fname'] . " " . $user['lname']; ?></td>
+                                            <td><?php echo $user['email']; ?></td>
+                                            <td><a href="EditUser/<?php echo $user['id']; ?>">Edit</a> | <a href="DeleteUser/<?php echo $user['id']; ?>">Delete</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                        </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

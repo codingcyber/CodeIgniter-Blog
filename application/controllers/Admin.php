@@ -285,9 +285,12 @@ class Admin extends CI_Controller {
 	}
 
 	public function ViewUsers(){
+		$this->load->model('admin_model');
+		$data['users'] = $this->admin_model->selectUsers();
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
-		$this->load->view('admin/view-users');
+		$this->load->view('admin/view-users', $data);
 		$this->load->view('admin/templates/footer');
 	}
 
