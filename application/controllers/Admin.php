@@ -138,8 +138,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 
-	public function fileUpload($file)
-    {
+	public function fileUpload($file){
         $config['upload_path']          = './assets/media/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['encrypt_name']         = TRUE;
@@ -181,7 +180,19 @@ class Admin extends CI_Controller {
 	}
 
 	public function DeletePost($id){
-
+		$this->load->model('admin_model');
+		$post = $this->admin_model->selectPost($id);
+		//var_dump($post);
+		$filepath = "./assets/media/".$post['pic'];
+		unlink($filepath);
+		// Delete records from post categories table
+		$this->admin_model->deletePostCategories($id);
+		// Delete the Post from posts table
+		$res = $this->admin_model->deletePost($id);
+		if($res){
+			$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Deleted Successfully.</div>');
+			redirect('Admin/ViewPosts');
+		}
 	}
 
 	// Pages - Add, Edit, Update, View, Delete Page, Delete Page Pic

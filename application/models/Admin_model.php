@@ -48,6 +48,21 @@ class Admin_model extends CI_Model {
 		}
 	}
 
+	public function selectPost($id){
+		$query = $this->db->get_where('posts', array('id' => $id));
+		return $query->row_array();
+	}
+
+	public function deletePostCategories($pid){
+		$query = $this->db->delete('post_categories', array('pid' => $pid));
+		//return $query;
+	}
+
+	public function deletePost($id){
+		$query = $this->db->delete('posts', array('id' => $id));
+		return $query;
+	}
+
 	// Pages
 
 	// Users
