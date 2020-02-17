@@ -33,3 +33,11 @@ comments
 widgets
 
 users
+-id
+-fname
+-lname
+-username
+-email
+-password
+-created
+-updated
