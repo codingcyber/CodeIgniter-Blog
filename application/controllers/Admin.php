@@ -295,7 +295,12 @@ class Admin extends CI_Controller {
 	}
 
 	public function DeleteUser($id){
-
+		$this->load->model('admin_model');
+		$res = $this->admin_model->deleteUser($id);
+		if($res){
+			$this->session->set_flashdata('user', '<div class="alert alert-success">User Deleted Successfully.</div>');
+				redirect('Admin/ViewUsers');
+		}
 	}
 
 

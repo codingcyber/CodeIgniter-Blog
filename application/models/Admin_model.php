@@ -97,5 +97,10 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function deleteUser($id){
+		$query = $this->db->delete('users', array('id' => $id));
+		return $query;
+	}
+
 	// Widgets
 }
