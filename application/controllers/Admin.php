@@ -278,7 +278,12 @@ class Admin extends CI_Controller {
 	}
 
 	public function EditUser($id){
-
+		$this->load->model('admin_model');
+		$data['user'] = $this->admin_model->selectUser($id);
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/edit-user', $data);
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function UpdateUser(){

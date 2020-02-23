@@ -102,5 +102,10 @@ class Admin_model extends CI_Model {
 		return $query;
 	}
 
+	public function selectUser($id){
+		$query = $this->db->get_where('users', array('id' => $id));
+		return $query->row_array();
+	}
+
 	// Widgets
 }
