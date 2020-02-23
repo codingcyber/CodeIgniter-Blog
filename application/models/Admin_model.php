@@ -86,8 +86,8 @@ class Admin_model extends CI_Model {
 	// Pages
 
 	// Users
-	public function insertUser($username, $fname, $lname, $email, $password){
-		$query = $this->db->query("INSERT INTO users (username, fname, lname, email, password) VALUES ('$username', '$fname', '$lname', '$email', '$password')");
+	public function insertUser($username, $fname, $lname, $email, $password, $role){
+		$query = $this->db->query("INSERT INTO users (username, fname, lname, email, password, role) VALUES ('$username', '$fname', '$lname', '$email', '$password', '$role')");
 		return $query;
 	}
 

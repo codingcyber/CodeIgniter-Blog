@@ -40,15 +40,15 @@
                                             <label>Password</label>
                                             <input type="password" name="password" class="form-control" placeholder="Enter User Password">
                                         </div>
-                                        <!-- <div class="form-group">
+                                        <div class="form-group">
                                             <label>User Role</label>
-                                            <select class="form-control">
-                                                <option>Select User Role</option>
-                                                <option>Subscriber</option>
-                                                <option>Editor</option>
-                                                <option>Administrator</option>
+                                            <select name="role" class="form-control">
+                                                <option value="">Select User Role</option>
+                                                <option value="subscriber">Subscriber</option>
+                                                <option value="editor">Editor</option>
+                                                <option value="administrator">Administrator</option>
                                             </select>
-                                        </div> -->
+                                        </div>
 
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-danger">Reset </button>

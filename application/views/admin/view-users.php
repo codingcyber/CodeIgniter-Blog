@@ -23,6 +23,7 @@
                                             <th>User Name</th>
                                             <th>Full Name</th>
                                             <th>E-Mail</th>
+                                            <th>Role</th>
                                             <th>Operations</th>
                                         </tr>
                                     </thead>
@@ -33,6 +34,7 @@
                                             <td><?php echo $user['username']; ?></td>
                                             <td><?php echo $user['fname'] . " " . $user['lname']; ?></td>
                                             <td><?php echo $user['email']; ?></td>
+                                            <td><?php echo $user['role']; ?></td>
                                             <td><a href="EditUser/<?php echo $user['id']; ?>">Edit</a> | <a href="DeleteUser/<?php echo $user['id']; ?>">Delete</a></td>
                                         </tr>
                                         <?php } ?>

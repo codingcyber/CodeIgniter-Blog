@@ -251,6 +251,7 @@ class Admin extends CI_Controller {
 		$lname = $this->input->post('lname');
 		$email = $this->input->post('email');
 		$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+		$role = $this->input->post('role');
 
 		// Form Validations
 		$this->load->library('form_validation');
@@ -263,7 +264,7 @@ class Admin extends CI_Controller {
 		}else{
 			// insert into users table
 			$this->load->model('admin_model');
-			$res = $this->admin_model->insertUser($username, $fname, $lname, $email, $password);
+			$res = $this->admin_model->insertUser($username, $fname, $lname, $email, $password, $role);
 			if($res){
 				$this->session->set_flashdata('user', '<div class="alert alert-success">User Added Successfully.</div>');
 				redirect('Admin/ViewUsers');
