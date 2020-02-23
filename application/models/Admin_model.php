@@ -107,5 +107,13 @@ class Admin_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function updateUser($fname, $lname, $password, $role, $id){
+		$sql = "UPDATE users SET fname='$fname', lname='$lname', role='$role', ";
+		if(!empty($password)){$sql .= "password='$password', ";}
+		$sql .= "updated=NOW() WHERE id=$id";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 	// Widgets
 }

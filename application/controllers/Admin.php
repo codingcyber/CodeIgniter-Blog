@@ -287,7 +287,18 @@ class Admin extends CI_Controller {
 	}
 
 	public function UpdateUser(){
+		$fname = $this->input->post('fname');
+		$lname = $this->input->post('lname');
+		$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+		$role = $this->input->post('role');
+		$id = $this->input->post('id');
 
+		$this->load->model('admin_model');
+		$res = $this->admin_model->updateUser($fname, $lname, $password, $role, $id);
+		if($res){
+			$this->session->set_flashdata('user', '<div class="alert alert-success">User updated Successfully.</div>');
+			redirect('Admin/ViewUsers');
+		}
 	}
 
 	public function ViewUsers(){

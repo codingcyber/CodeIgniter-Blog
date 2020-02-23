@@ -23,11 +23,11 @@
                                     <!-- <form role="form"> -->
                                         <div class="form-group">
                                             <label>User Name</label>
-                                            <input name="username" class="form-control" placeholder="Enter User Name" value="<?php echo $user['username']; ?>">
+                                            <input name="username" class="form-control" placeholder="Enter User Name" value="<?php echo $user['username']; ?>" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>E-Mail</label>
-                                            <input name="email" type="email" class="form-control" placeholder="Enter E-Mail" value="<?php echo $user['email']; ?>">
+                                            <input name="email" type="email" class="form-control" placeholder="Enter E-Mail" value="<?php echo $user['email']; ?>" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>First Name</label>
