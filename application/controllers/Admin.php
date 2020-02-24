@@ -8,6 +8,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function login(){
+		echo "<pre>";
+		print_r($this->session->userdata());
+		echo "</pre>";
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/login');
 		$this->load->view('admin/templates/footer');
@@ -43,6 +46,27 @@ class Admin extends CI_Controller {
 		echo "<pre>";
 		print_r($this->session->userdata());
 		echo "</pre>";
+		$this->checkLogin();
+	}
+
+	private function checkLogin(){
+		if($this->session->login != 'true'){
+			$this->session->sess_destroy();
+			redirect('Admin/Login');
+		}
+		if(empty($this->session->id)){
+			$this->session->sess_destroy();
+			redirect('Admin/Login');
+		}
+		if(empty($this->session->last_login)){
+			$this->session->sess_destroy();
+			redirect('Admin/Login');
+		}
+	}
+
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('Admin/Login');
 	}
 
 	// Categories - Add, Edit, Update, View, Delete
