@@ -4,7 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 	// Admin User Login
 	public function index(){
-		echo "Admin Index";
+		$this->login();
+	}
+
+	public function login(){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/login');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function loginProcess(){
+		
 	}
 
 	// Categories - Add, Edit, Update, View, Delete
