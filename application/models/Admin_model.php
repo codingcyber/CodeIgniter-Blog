@@ -115,5 +115,15 @@ class Admin_model extends CI_Model {
 		return $query;
 	}
 
+	public function loginUser($email, $password){
+		$query = $this->db->query("SELECT * FROM users WHERE email='$email'");
+		// AND role='administrator'
+		if($query->num_rows() == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	// Widgets
 }

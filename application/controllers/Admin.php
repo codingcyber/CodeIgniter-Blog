@@ -14,7 +14,24 @@ class Admin extends CI_Controller {
 	}
 
 	public function loginProcess(){
-		
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		if($this->form_validation->run() == FALSE){
+			$this->login();
+		}else{
+			$this->load->model('admin_model');
+			$data = $this->admin_model->loginUser($email, $password);
+			if($data){
+				echo "User Valid";
+			}else{
+				echo "User Invalid";
+			}
+		}	
+
 	}
 
 	// Categories - Add, Edit, Update, View, Delete

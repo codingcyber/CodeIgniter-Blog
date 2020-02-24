@@ -6,6 +6,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
+                        <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
                         <?php 
                             $attributes = array('role' => 'form');
                             echo form_open('Admin/loginProcess', $attributes); ?>
