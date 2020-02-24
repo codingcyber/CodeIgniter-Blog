@@ -25,13 +25,24 @@ class Admin extends CI_Controller {
 		}else{
 			$this->load->model('admin_model');
 			$data = $this->admin_model->loginUser($email, $password);
-			if($data){
-				echo "User Valid";
+			if($data['response']){
+				$user = $data['user'];
+				$this->session->set_userdata('id', $user['id']);
+				$this->session->set_userdata('login', true);
+				$this->session->set_userdata('last_login', time());
+				redirect('/Admin/Dashboard');
 			}else{
-				echo "User Invalid";
+				$this->session->set_flashdata('login', '<div class="alert alert-danger">Login Failed, please check your login credentials.</div>');
+				redirect('Admin/login');
 			}
 		}	
 
+	}
+
+	public function Dashboard(){
+		echo "<pre>";
+		print_r($this->session->userdata());
+		echo "</pre>";
 	}
 
 	// Categories - Add, Edit, Update, View, Delete

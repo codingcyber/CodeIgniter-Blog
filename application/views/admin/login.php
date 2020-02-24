@@ -7,6 +7,7 @@
                     </div>
                     <div class="panel-body">
                         <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+                        <?php echo $this->session->flashdata('login'); ?>
                         <?php 
                             $attributes = array('role' => 'form');
                             echo form_open('Admin/loginProcess', $attributes); ?>
