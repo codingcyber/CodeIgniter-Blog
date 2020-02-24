@@ -8,9 +8,6 @@ class Admin extends CI_Controller {
 	}
 
 	public function login(){
-		echo "<pre>";
-		print_r($this->session->userdata());
-		echo "</pre>";
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/login');
 		$this->load->view('admin/templates/footer');
@@ -47,6 +44,7 @@ class Admin extends CI_Controller {
 		print_r($this->session->userdata());
 		echo "</pre>";
 		$this->checkLogin();
+		$this->checkUserAdmin();
 	}
 
 	private function checkLogin(){
@@ -61,6 +59,17 @@ class Admin extends CI_Controller {
 		if(empty($this->session->last_login)){
 			$this->session->sess_destroy();
 			redirect('Admin/Login');
+		}
+	}
+
+	private function checkUserAdmin(){
+		$this->load->model('admin_model');
+		$user = $this->admin_model->selectUser($this->session->id);
+
+		if(($user['role'] == 'administrator') || ($user['role'] == 'editor')){
+			echo "Admin or Editor";
+		}else{
+			redirect('Blog');
 		}
 	}
 
