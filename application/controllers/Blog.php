@@ -16,6 +16,31 @@ class Blog extends CI_Controller {
 		$this->load->view('frontend/templates/footer');
 	}
 
+	public function login(){
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		if($this->form_validation->run() == FALSE){
+			$this->index();
+		}else{
+			$this->load->model('blog_model');
+			$data = $this->blog_model->loginUser($email, $password);
+			if($data['response']){
+				$user = $data['user'];
+				$this->session->set_userdata('id', $user['id']);
+				$this->session->set_userdata('login', true);
+				$this->session->set_userdata('last_login', time());
+				redirect('/Blog');
+			}else{
+				$this->session->set_flashdata('login', '<div class="alert alert-danger">Login Failed, please check your login credentials.</div>');
+				$this->index();
+			}
+		}
+	}
+
 	public function category(){
 		//echo "Blog Category Controller Method";
 		$this->load->helper('url');

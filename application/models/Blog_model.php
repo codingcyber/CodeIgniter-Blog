@@ -27,4 +27,25 @@ class Blog_model extends CI_Model {
 	public function getPage(){
 		
 	}
+
+	public function loginUser($email, $password){
+		$query = $this->db->query("SELECT * FROM users WHERE email='$email'");
+		if($query->num_rows() == 1){
+			$user = $query->row_array();
+			if(password_verify($password, $user['password'])){
+				$data['user'] = $user;
+				$data['response'] = true;
+				return $data;
+			}else{
+				$data['response'] = false;
+				return $data;
+			}
+		}else{
+			$data['response'] = false;
+			return $data;
+		}
+	}
+
+
+
 }

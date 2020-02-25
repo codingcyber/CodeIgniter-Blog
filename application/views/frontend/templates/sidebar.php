@@ -57,4 +57,33 @@
             </div>
           </div>
 
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">User Login</h5>
+            <div class="card-body">
+              <?php
+                echo "<pre>";
+                print_r($this->session->userdata());
+                echo "</pre>";
+              ?>
+              <?php echo $this->session->flashdata('login'); ?>
+              <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+              <?php 
+                  $attributes = array('role' => 'form');
+                  echo form_open('Blog/login', $attributes); ?>
+                  <fieldset>
+                      <div class="form-group">
+                          <input name="email" class="form-control" placeholder="E-mail" name="email" type="email" autofocus value="">
+                      </div>
+                      <div class="form-group">
+                          <input name="password" class="form-control" placeholder="Password" name="password" type="password" value="">
+                      </div>
+                      <!-- Change this to a button or input when using this as a form -->
+                      <input type="submit" class="btn btn-lg btn-success btn-block" value="Login" />
+                  </fieldset>
+              </form>
+            </div>
+          </div>
+
         </div>
