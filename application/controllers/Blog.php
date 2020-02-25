@@ -41,6 +41,11 @@ class Blog extends CI_Controller {
 		}
 	}
 
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('Blog');
+	}
+
 	public function category(){
 		//echo "Blog Category Controller Method";
 		$this->load->helper('url');

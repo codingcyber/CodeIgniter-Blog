@@ -29,7 +29,7 @@ class Blog_model extends CI_Model {
 	}
 
 	public function loginUser($email, $password){
-		$query = $this->db->query("SELECT * FROM users WHERE email='$email'");
+		$query = $this->db->query("SELECT * FROM users WHERE email='$email' AND role='subscriber'");
 		if($query->num_rows() == 1){
 			$user = $query->row_array();
 			if(password_verify($password, $user['password'])){
