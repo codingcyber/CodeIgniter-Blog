@@ -63,13 +63,15 @@
             <h5 class="card-header"><?php if($userLogin){ echo "Welcome User!";}else{ echo "User Login";} ?></h5>
             <div class="card-body">
               <?php
-                echo "<pre>";
-                print_r($this->session->userdata());
-                print_r($user);
-                echo "</pre>";
                 if($userLogin){
               ?>
-              Hi <?php echo $user['username']; ?>, Logged in as <?php echo $user['role']; ?>
+              Hi <?php if((isset($user['fname']) || isset($user['lname'])) & (!empty($user['fname']) || !empty($user['lname']))){ echo $user['fname'] . " " . $user['lname']; }else{ echo $user['username'];} ?>, Logged in as 
+              <?php 
+              if(($user['role'] == 'administrator') || ($user['role'] == 'editor')){
+                echo "<a href='" . base_url('index.php/Admin/Dashboard') ."'>". $user['role'] ."</a>";
+              }elseif($user['role'] == 'subscriber'){
+                echo "<a href='" . base_url('index.php/Blog') ."'>". $user['role'] ."</a>";
+              } ?>
               <br><a href="<?php echo base_url('index.php/Blog/'); ?>logout">Logout</a>
             <?php }else{ ?>
               <?php echo $this->session->flashdata('login'); ?>

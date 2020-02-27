@@ -22,7 +22,7 @@
             <div class="card-body">
               <h2 class="card-title"><?php echo $post['title']; ?></h2>
               <p class="card-text"><?php echo $post['content']; ?></p>
-              <a href="<?php base_url(); ?>post/<?php echo $post['id']; ?>" class="btn btn-primary">Read More &rarr;</a>
+              <a href="<?php base_url(); ?>Blog/post/<?php echo $post['id']; ?>" class="btn btn-primary">Read More &rarr;</a>
             </div>
             <div class="card-footer text-muted">
               Posted on <?php echo $post['created']; ?> by

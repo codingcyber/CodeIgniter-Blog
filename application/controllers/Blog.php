@@ -8,7 +8,9 @@ class Blog extends CI_Controller {
 		$this->load->model('blog_model');
 		$data['posts'] = $this->blog_model->getAllPosts();
 		$data['userLogin'] = $this->checkLogin();
-		$data['user'] = $this->getUser();
+		if($data['userLogin']){
+			$data['user'] = $this->getUser();
+		}
 
 		$this->load->helper('url');
 		$this->load->view('frontend/templates/header');
@@ -67,6 +69,11 @@ class Blog extends CI_Controller {
 	public function category(){
 		//echo "Blog Category Controller Method";
 		$this->load->helper('url');
+		$data['userLogin'] = $this->checkLogin();
+		if($data['userLogin']){
+			$data['user'] = $this->getUser();
+		}
+		
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
 		$this->load->view('frontend/category');
@@ -78,6 +85,10 @@ class Blog extends CI_Controller {
 		//echo "Blog Post Controller Method";
 		$this->load->model('blog_model');
 		$data['post'] = $this->blog_model->getPost($id);
+		$data['userLogin'] = $this->checkLogin();
+		if($data['userLogin']){
+			$data['user'] = $this->getUser();
+		}
 
 		$this->load->helper('url');
 		$this->load->view('frontend/templates/header');
