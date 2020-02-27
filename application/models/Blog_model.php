@@ -25,6 +25,14 @@ class Blog_model extends CI_Model {
 		return $data;
 	}
 
+	public function getComments($pid){
+		$query = $this->db->query("SELECT * FROM comments WHERE pid=$pid");
+		$data['count'] = $query->num_rows();
+		$data['rows'] = $query->result_array();
+		
+		return $data;
+	}
+
 	// Get Single Page for Blog Page
 	public function getPage(){
 		
