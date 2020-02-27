@@ -133,5 +133,11 @@ class Admin_model extends CI_Model {
 		}
 	}
 
+	// Comments
+	public function selectComments(){
+		$query = $this->db->query("SELECT comments.id, comments.comment, comments.status, comments.created, users.username, posts.title FROM comments JOIN users ON comments.uid=users.id JOIN posts ON comments.pid=posts.id");
+		return $query->result_array();
+	}
+
 	// Widgets
 }

@@ -24,33 +24,22 @@
                                             <th>In Response To</th>
                                             <th>Date</th>
                                             <th>Status</th>
+                                            <th>Operations</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach ($comments as $comment) { ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
+                                            <td><?php echo $comment['id']; ?></td>
+                                            <td><?php echo $comment['username']; ?></td>
+                                            <td><?php echo $comment['comment']; ?></td>
+                                            <td><?php echo $comment['title']; ?></td>
+                                            <td><?php echo $comment['created']; ?></td>
+                                            <td><?php echo $comment['status']; ?></td>
+                                            <td><a href="<?php echo base_url('index.php/Admin/EditComment/') . $comment['id']; ?>">Edit</a> | <a href="<?php echo base_url('index.php/Admin/processComments/') . $comment['id']; ?>">Approve/Disapprove</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                        </tr>
+                                        <?php } ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>

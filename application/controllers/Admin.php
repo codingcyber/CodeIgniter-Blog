@@ -391,6 +391,16 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	// Comments
+	public function ViewComments(){
+		$this->load->model('admin_model');
+		$data['comments'] = $this->admin_model->selectComments();
+
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/comments', $data);
+		$this->load->view('admin/templates/footer');
+	}
 
 	// Widgets - Add, Edit, Update, View, Delete
 }
