@@ -38,9 +38,14 @@
           <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>
             <div class="card-body">
-              <form>
+              <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+              <?php echo $this->session->flashdata('comment'); ?>
+              <?php 
+                $attributes = array('role' => 'form');
+                echo form_open('Blog/submitComment', $attributes); ?>
                 <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
+                  <input type="hidden" name="pid" value="<?php echo $post['id']; ?>">
+                  <textarea name="comment" class="form-control" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>

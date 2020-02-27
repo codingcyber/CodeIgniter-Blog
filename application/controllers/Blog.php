@@ -73,7 +73,7 @@ class Blog extends CI_Controller {
 		if($data['userLogin']){
 			$data['user'] = $this->getUser();
 		}
-		
+
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
 		$this->load->view('frontend/category');
@@ -107,4 +107,29 @@ class Blog extends CI_Controller {
 		$this->load->view('frontend/templates/sidebar');
 		$this->load->view('frontend/templates/footer');
 	}
+
+	public function submitComment(){
+		$pid = $this->input->post('pid');
+		$uid = $this->session->id;
+		$comment = $this->input->post('comment');
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('comment', 'Comment', 'trim|required');
+		if($this->form_validation->run() == FALSE){
+			$this->post($pid);
+		}else{
+			$this->load->model('blog_model');
+			$res = $this->blog_model->insertComment($pid, $uid, $comment);
+			if($res){
+				$this->session->set_flashdata('comment', '<div class="alert alert-success">Comment Submitted Successfully.</div>');
+			}else{
+				$this->session->set_flashdata('comment', '<div class="alert alert-danger"> Failed to Submit the Comment.</div>');
+			}
+			redirect("/Blog/post/$pid");
+		}
+	}
+
+
+
+
 }

@@ -52,6 +52,12 @@ class Blog_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function insertComment($pid, $uid, $comment){
+		$query = $this->db->query("INSERT INTO comments (pid, uid, comment, status) VALUES ('$pid', '$uid', '$comment', 'submitted')");
+
+		return $query;
+	}
+
 
 
 }
