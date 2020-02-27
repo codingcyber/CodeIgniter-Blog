@@ -7,6 +7,7 @@ class Blog extends CI_Controller {
 
 		$this->load->model('blog_model');
 		$data['posts'] = $this->blog_model->getAllPosts();
+		$data['user'] = $this->getUser();
 
 		$this->load->helper('url');
 		$this->load->view('frontend/templates/header');
@@ -44,6 +45,13 @@ class Blog extends CI_Controller {
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect('Blog');
+	}
+
+	private function getUser(){
+		$this->load->model('blog_model');
+		$data = $this->blog_model->getUserInfo($this->session->id);
+
+		return $data;
 	}
 
 	public function category(){

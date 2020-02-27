@@ -46,6 +46,12 @@ class Blog_model extends CI_Model {
 		}
 	}
 
+	public function getUserInfo($id){
+		$query = $this->db->get_where('users', array('id' => $id));
+
+		return $query->row_array();
+	}
+
 
 
 }

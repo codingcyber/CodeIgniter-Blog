@@ -65,8 +65,11 @@
               <?php
                 echo "<pre>";
                 print_r($this->session->userdata());
+                print_r($user);
                 echo "</pre>";
               ?>
+              Hi <?php echo $user['username']; ?>, Logged in as <?php echo $user['role']; ?>
+              <a href="<?php echo base_url('index.php/Blog/'); ?>logout">Logout</a>
               <?php echo $this->session->flashdata('login'); ?>
               <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
               <?php 
