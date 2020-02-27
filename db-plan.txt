@@ -29,6 +29,13 @@ post_categories
 pages
 
 comments
+-id
+-pid
+-uid
+-comment
+-status
+-created
+-updated
 
 widgets
 
