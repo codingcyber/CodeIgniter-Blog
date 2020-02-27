@@ -7,6 +7,7 @@ class Blog extends CI_Controller {
 
 		$this->load->model('blog_model');
 		$data['posts'] = $this->blog_model->getAllPosts();
+		$data['userLogin'] = $this->checkLogin();
 		$data['user'] = $this->getUser();
 
 		$this->load->helper('url');
@@ -52,6 +53,15 @@ class Blog extends CI_Controller {
 		$data = $this->blog_model->getUserInfo($this->session->id);
 
 		return $data;
+	}
+
+	private function checkLogin(){
+		if(empty($this->session->id)){
+			$this->session->sess_destroy();
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 	public function category(){

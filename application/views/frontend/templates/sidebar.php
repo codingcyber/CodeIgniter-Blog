@@ -60,16 +60,18 @@
 
           <!-- Side Widget -->
           <div class="card my-4">
-            <h5 class="card-header">User Login</h5>
+            <h5 class="card-header"><?php if($userLogin){ echo "Welcome User!";}else{ echo "User Login";} ?></h5>
             <div class="card-body">
               <?php
                 echo "<pre>";
                 print_r($this->session->userdata());
                 print_r($user);
                 echo "</pre>";
+                if($userLogin){
               ?>
               Hi <?php echo $user['username']; ?>, Logged in as <?php echo $user['role']; ?>
-              <a href="<?php echo base_url('index.php/Blog/'); ?>logout">Logout</a>
+              <br><a href="<?php echo base_url('index.php/Blog/'); ?>logout">Logout</a>
+            <?php }else{ ?>
               <?php echo $this->session->flashdata('login'); ?>
               <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
               <?php 
@@ -86,6 +88,7 @@
                       <input type="submit" class="btn btn-lg btn-success btn-block" value="Login" />
                   </fieldset>
               </form>
+            <?php } ?>
             </div>
           </div>
 
