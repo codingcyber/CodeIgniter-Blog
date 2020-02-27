@@ -84,12 +84,15 @@ class Blog extends CI_Controller {
 	public function post($id){
 		//echo "Blog Post Controller Method";
 		$this->load->model('blog_model');
-		$data['post'] = $this->blog_model->getPost($id);
+		$data = $this->blog_model->getPost($id);
 		$data['userLogin'] = $this->checkLogin();
 		if($data['userLogin']){
 			$data['user'] = $this->getUser();
 		}
-
+		//var_dump($data);
+		if($data['postcount'] < 1){
+			redirect('Blog/404');
+		}
 		$this->load->helper('url');
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
