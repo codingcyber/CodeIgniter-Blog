@@ -26,7 +26,7 @@ class Blog_model extends CI_Model {
 	}
 
 	public function getComments($pid){
-		$query = $this->db->query("SELECT * FROM comments WHERE pid=$pid");
+		$query = $this->db->query("SELECT comments.comment, users.username, users.fname, users.lname, users.role FROM comments JOIN users ON comments.uid=users.id WHERE comments.pid=$pid AND comments.status='approved' ORDER BY comments.created DESC");
 		$data['count'] = $query->num_rows();
 		$data['rows'] = $query->result_array();
 		

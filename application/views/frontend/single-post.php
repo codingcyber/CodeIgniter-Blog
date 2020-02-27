@@ -55,16 +55,19 @@
           <h3>You Should be Loggein to post Comments.</h3><hr>
         <?php } ?>
 
-        <?php if($comment['count'] >= 1){ ?>
+        <?php 
+          if($comment['count'] >= 1){ 
+            foreach ($comment['rows'] as $comment) {
+          ?>
           <!-- Single Comment -->
           <div class="media mb-4">
             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
             <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              <h5 class="mt-0"><?php if((isset($comment['fname']) || isset($comment['lname'])) & (!empty($comment['fname']) || !empty($comment['lname']))){ echo $comment['fname'] . " " . $comment['lname']; }else{ echo $comment['username'];} ?></h5>
+              <?php echo $comment['comment']; ?>
             </div>
           </div>
-        <?php }else{ ?>
+        <?php } }else{ ?>
           <h3>No Comments for this post, be the first one to post a new comment.</h3><hr>
         <?php } ?>
 
