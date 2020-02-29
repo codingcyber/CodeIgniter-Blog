@@ -415,10 +415,33 @@ class Admin extends CI_Controller {
 			}else{
 				// failure message
 				$this->session->set_flashdata('comment', '<div class="alert alert-danger">Failed to Update Comment Status.</div>');
-					redirect('Admin/ViewComments');
+				redirect('Admin/ViewComments');
 			}
 		}else{
 			$this->session->set_flashdata('comment', '<div class="alert alert-danger">This Status is not Acceptable.</div>');
+			redirect('Admin/ViewComments');
+		}
+	}
+
+	public function EditComment($id){
+		$this->load->model('admin_model');
+		$data['comment'] = $this->admin_model->selectComment($id);
+
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/edit-comment', $data);
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function UpdateComment(){
+		$comment = $this->input->post('comment');
+		$status = $this->input->post('status');
+		$id = $this->input->post('id');
+
+		$this->load->model('admin_model');
+		$res = $this->admin_model->updateComment($comment, $status, $id);
+		if($res){
+			$this->session->set_flashdata('comment', '<div class="alert alert-success">Comment Udpated.</div>');
 			redirect('Admin/ViewComments');
 		}
 	}

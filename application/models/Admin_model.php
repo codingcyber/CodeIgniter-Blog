@@ -151,5 +151,15 @@ class Admin_model extends CI_Model {
 		return $query;
 	}
 
+	public function selectComment($id){
+		$query = $this->db->get_where('comments', array('id' => $id));
+		return $query->row_array();
+	}
+
+	public function updateComment($comment, $status, $id){
+		$query = $this->db->query("UPDATE comments SET comment='$comment', status='$status', updated=NOW() WHERE id=$id");
+		return $query;
+	}
+
 	// Widgets
 }
