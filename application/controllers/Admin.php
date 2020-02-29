@@ -395,6 +395,7 @@ class Admin extends CI_Controller {
 	public function ViewComments(){
 		$this->load->model('admin_model');
 		$data['comments'] = $this->admin_model->selectComments();
+		$data['role'] = $this->admin_model->userRole($this->session->id);
 
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');

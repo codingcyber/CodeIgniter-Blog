@@ -139,5 +139,12 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function userRole($id){
+		$query = $this->db->get_where('users', array('id' => $id));
+		$user = $query->row_array();
+
+		return $user['role'];
+	}
+
 	// Widgets
 }

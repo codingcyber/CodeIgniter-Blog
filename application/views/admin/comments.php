@@ -36,7 +36,11 @@
                                             <td><?php echo $comment['title']; ?></td>
                                             <td><?php echo $comment['created']; ?></td>
                                             <td><?php echo $comment['status']; ?></td>
-                                            <td><a href="<?php echo base_url('index.php/Admin/EditComment/') . $comment['id']; ?>">Edit</a> | <a href="<?php echo base_url('index.php/Admin/processComments/') . $comment['id']; ?>">Approve/Disapprove</a></td>
+    <td>
+        <?php if($role == 'administrator'){ ?>
+        <a href="<?php echo base_url('index.php/Admin/EditComment/') . $comment['id']; ?>">Edit</a> | <a href="<?php echo base_url('index.php/Admin/processComments/') . $comment['id']; ?>">Approve/Disapprove</a>
+        <?php }else{ echo "NA"; } ?>
+    </td>
                                         </tr>
                                         <?php } ?>
                                         
