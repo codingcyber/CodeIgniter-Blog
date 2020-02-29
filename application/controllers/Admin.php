@@ -405,16 +405,21 @@ class Admin extends CI_Controller {
 
 	public function processComment($id, $status){
 		$this->load->model('admin_model');
-		$res = $this->admin_model->commentStatus($id, $status);
 
-		if($res){
-			// success message
-			$this->session->set_flashdata('comment', '<div class="alert alert-success">Comment Status Updated Successfully.</div>');
-				redirect('Admin/ViewComments');
+		if(($status == 'approved') || ($status == 'disapproved')){
+			$res = $this->admin_model->commentStatus($id, $status);
+			if($res){
+				// success message
+				$this->session->set_flashdata('comment', '<div class="alert alert-success">Comment Status Updated Successfully.</div>');
+					redirect('Admin/ViewComments');
+			}else{
+				// failure message
+				$this->session->set_flashdata('comment', '<div class="alert alert-danger">Failed to Update Comment Status.</div>');
+					redirect('Admin/ViewComments');
+			}
 		}else{
-			// failure message
-			$this->session->set_flashdata('comment', '<div class="alert alert-danger">Failed to Update Comment Status.</div>');
-				redirect('Admin/ViewComments');
+			$this->session->set_flashdata('comment', '<div class="alert alert-danger">This Status is not Acceptable.</div>');
+			redirect('Admin/ViewComments');
 		}
 	}
 
