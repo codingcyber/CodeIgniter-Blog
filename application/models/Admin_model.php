@@ -146,5 +146,10 @@ class Admin_model extends CI_Model {
 		return $user['role'];
 	}
 
+	public function commentStatus($id, $status){
+		$query = $this->db->query("UPDATE comments SET status='$status', updated=NOW() WHERE id=$id");
+		return $query;
+	}
+
 	// Widgets
 }

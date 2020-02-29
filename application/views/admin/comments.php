@@ -14,6 +14,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <?php echo $this->session->flashdata('comment'); ?>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
@@ -38,8 +39,15 @@
                                             <td><?php echo $comment['status']; ?></td>
     <td>
         <?php if($role == 'administrator'){ ?>
-        <a href="<?php echo base_url('index.php/Admin/EditComment/') . $comment['id']; ?>">Edit</a> | <a href="<?php echo base_url('index.php/Admin/processComments/') . $comment['id']; ?>">Approve/Disapprove</a>
-        <?php }else{ echo "NA"; } ?>
+        <a href="<?php echo base_url('index.php/Admin/EditComment/') . $comment['id']; ?>">Edit</a> | 
+            <?php if($comment['status'] == 'approved'){ ?>
+        <a href="<?php echo base_url('index.php/Admin/processComment/') . $comment['id']; ?>/disapproved">Disapprove</a>
+        <?php }elseif($comment['status'] == 'disapproved'){ ?>
+        <a href="<?php echo base_url('index.php/Admin/processComment/') . $comment['id']; ?>/approved">Approve</a>
+        <?php }else{ ?>
+        <a href="<?php echo base_url('index.php/Admin/processComment/') . $comment['id']; ?>/approved">Approve</a>
+        <a href="<?php echo base_url('index.php/Admin/processComment/') . $comment['id']; ?>/disapproved">Disapprove</a>
+        <?php } }else{ echo "NA"; } ?>
     </td>
                                         </tr>
                                         <?php } ?>
