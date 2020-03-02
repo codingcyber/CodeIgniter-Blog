@@ -38,6 +38,13 @@ comments
 -updated
 
 widgets
+-id
+-title
+-type
+-content
+-widget_order
+-created
+-updated
 
 users
 -id

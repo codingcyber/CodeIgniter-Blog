@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2020 at 08:06 PM
+-- Generation Time: Mar 02, 2020 at 08:33 PM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.1.30
 
@@ -96,6 +96,22 @@ CREATE TABLE `users` (
   `updated` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `widgets`
+--
+
+CREATE TABLE `widgets` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `widget_order` varchar(255) NOT NULL,
+  `created` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -133,6 +149,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `widgets`
+--
+ALTER TABLE `widgets`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -164,5 +186,11 @@ ALTER TABLE `post_categories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `widgets`
+--
+ALTER TABLE `widgets`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
