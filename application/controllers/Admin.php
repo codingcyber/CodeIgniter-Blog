@@ -447,4 +447,29 @@ class Admin extends CI_Controller {
 	}
 
 	// Widgets - Add, Edit, Update, View, Delete
+
+	public function AddWidget(){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/add-widget');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function ViewWidgets(){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/view-widgets');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function EditWidget($id){
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		//$this->load->view('admin/edit-widget');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function DeleteWidget($id){
+
+	}
 }
