@@ -449,6 +449,33 @@ class Admin extends CI_Controller {
 	// Widgets - Add, Edit, Update, View, Delete
 
 	public function AddWidget(){
+		$title = $this->input->post('title');
+		$type = $this->input->post('type');
+		$content = $this->input->post('content');
+		$order = $this->input->post('order');
+
+		//Form Validations
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Widget Title', 'required');
+		$this->form_validation->set_rules('type', 'Widget Type', 'required');
+		$this->form_validation->set_rules('content', 'Widget Content', 'required');
+		$this->form_validation->set_rules('order', 'Widget Order', 'required');
+
+		if($this->form_validation->run() == FALSE){
+			// load the views & display the errors
+		}else{
+			// load the model method & execute the insert operation
+			$this->load->model('admin_model');
+			$res = $this->admin_model->insertWidget($title, $type, $content, $order);
+			if($res){
+				$this->session->set_flashdata('widget', '<div class="alert alert-success">Widget Added Successfully.</div>');
+				redirect('Admin/ViewWidgets');
+			}else{
+				$this->session->set_flashdata('widget', '<div class="alert alert-danger">Failed to Add Widget.</div>');
+				redirect('Admin/ViewWidgets');
+			}
+		}
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
 		$this->load->view('admin/add-widget');

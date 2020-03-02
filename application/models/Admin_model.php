@@ -162,4 +162,9 @@ class Admin_model extends CI_Model {
 	}
 
 	// Widgets
+
+	public function insertWidget($title, $type, $content, $order){
+		$query = $this->db->query("INSERT INTO widgets (title, type, content, widget_order) VALUES ('$title', '$type', '$content', '$order')");
+		return $query;
+	}
 }
