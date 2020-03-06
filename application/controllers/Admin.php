@@ -493,10 +493,40 @@ class Admin extends CI_Controller {
 	}
 
 	public function EditWidget($id){
+		$this->load->model('admin_model');
+		$data['widget'] = $this->admin_model->selectWidget($id);
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
-		//$this->load->view('admin/edit-widget');
+		$this->load->view('admin/edit-widget', $data);
 		$this->load->view('admin/templates/footer');
+	}
+
+	public function UpdateWidget(){
+		$title = $this->input->post('title');
+		$type = $this->input->post('type');
+		$content = $this->input->post('content');
+		$order = $this->input->post('order');
+		$id = $this->input->post('id');
+
+		//Form Validations
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Widget Title', 'required');
+		$this->form_validation->set_rules('type', 'Widget Type', 'required');
+		$this->form_validation->set_rules('content', 'Widget Content', 'required');
+		$this->form_validation->set_rules('order', 'Widget Order', 'required');
+
+		if($this->form_validation->run() == FALSE){
+			// load the views & display the errors
+		}else{
+			$this->load->model('admin_model');
+			$res = $this->admin_model->updateWidget($title, $type, $content, $order, $id);
+			if($res){
+				$this->session->set_flashdata('widget', '<div class="alert alert-success">Widget Updated Successfully.</div>');
+				redirect('Admin/ViewWidgets');
+			}
+		}
+
 	}
 
 	public function DeleteWidget($id){

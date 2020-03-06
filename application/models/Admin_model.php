@@ -173,6 +173,16 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function selectWidget($id){
+		$query = $this->db->get_where('widgets', array('id' => $id));
+		return $query->row_array();
+	}
+
+	public function updateWidget($title, $type, $content, $order, $id){
+		$query = $this->db->query("UPDATE widgets SET title='$title', type='$type', content='$content', widget_order='$order', updated=NOW() WHERE id=$id");
+		return $query;
+	}
+
 	public function deleteWidget($id){
 		$query = $this->db->delete('widgets', array('id' => $id));
 		return $query;
