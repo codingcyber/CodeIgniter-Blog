@@ -172,4 +172,9 @@ class Admin_model extends CI_Model {
 		$query = $this->db->get('widgets');
 		return $query->result_array();
 	}
+
+	public function deleteWidget($id){
+		$query = $this->db->delete('widgets', array('id' => $id));
+		return $query;
+	}
 }

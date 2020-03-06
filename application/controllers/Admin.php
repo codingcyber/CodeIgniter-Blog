@@ -500,6 +500,14 @@ class Admin extends CI_Controller {
 	}
 
 	public function DeleteWidget($id){
-
+		$this->load->model('admin_model');
+		$res = $this->admin_model->deleteWidget($id);
+		if($res){
+			$this->session->set_flashdata('widget', '<div class="alert alert-success">Widget Deleted Successfully.</div>');
+			redirect('Admin/ViewWidgets');
+		}else{
+			$this->session->set_flashdata('widget', '<div class="alert alert-danger">Failed to Delete Widget.</div>');
+			redirect('Admin/ViewWidgets');
+		}
 	}
 }
