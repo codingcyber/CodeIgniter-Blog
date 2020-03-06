@@ -12,6 +12,8 @@ class Blog extends CI_Controller {
 			$data['user'] = $this->getUser();
 		}
 
+		$data['sidebar'] = $this->sidebar();
+
 		$this->load->helper('url');
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
@@ -133,6 +135,15 @@ class Blog extends CI_Controller {
 			}
 			redirect("/Blog/post/$pid");
 		}
+	}
+
+	public function sidebar(){
+		$this->load->model('blog_model');
+		$data['search'] = $this->blog_model->getWidget('search');
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
+		return $data;
 	}
 
 

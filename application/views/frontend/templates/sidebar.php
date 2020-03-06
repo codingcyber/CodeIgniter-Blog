@@ -1,9 +1,14 @@
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
-
+        <?php 
+          echo "<pre>";
+          print_r($sidebar);
+          echo "</pre>";
+         ?>
+         <?php if($sidebar['search']['widgetcount'] == 1){ ?>
           <!-- Search Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Search</h5>
+            <h5 class="card-header"><?php echo $sidebar['search']['widget']['title']; ?></h5>
             <div class="card-body">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for...">
@@ -13,6 +18,7 @@
               </div>
             </div>
           </div>
+        <?php } ?>
 
           <!-- Categories Widget -->
           <div class="card my-4">

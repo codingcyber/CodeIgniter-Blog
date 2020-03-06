@@ -68,6 +68,14 @@ class Blog_model extends CI_Model {
 		return $query;
 	}
 
+	public function getWidget($type){
+		$query = $this->db->get_where('widgets', array('type' => $type));
+		$data['widgetcount'] = $query->num_rows();
+		$data['widget'] = $query->row_array();
+		
+		return $data;
+	}
+
 
 
 }
