@@ -21,33 +21,23 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Title</th>
+                                            <th>Type</th>
                                             <th>Order</th>
-                                            <th>Author</th>
                                             <th>Date</th>
+                                            <th>Operations</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach ($widgets as $widget) { ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
+                                            <td><?php echo $widget['id']; ?></td>
+                                            <td><?php echo $widget['title']; ?></td>
+                                            <td><?php echo $widget['type']; ?></td>
+                                            <td><?php echo $widget['widget_order']; ?></td>
+                                            <td><?php echo $widget['created']; ?></td>
+                                            <td><a href="EditWidget/<?php echo $widget['id']; ?>">Edit</a> | <a href="DeleteWidget/<?php echo $widget['id']; ?>">Delete</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>@mdo</td>
-                                        </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

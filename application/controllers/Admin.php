@@ -483,9 +483,12 @@ class Admin extends CI_Controller {
 	}
 
 	public function ViewWidgets(){
+		$this->load->model('admin_model');
+		$data['widgets'] = $this->admin_model->selectWidgets();
+
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
-		$this->load->view('admin/view-widgets');
+		$this->load->view('admin/view-widgets', $data);
 		$this->load->view('admin/templates/footer');
 	}
 

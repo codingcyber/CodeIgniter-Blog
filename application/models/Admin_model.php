@@ -167,4 +167,9 @@ class Admin_model extends CI_Model {
 		$query = $this->db->query("INSERT INTO widgets (title, type, content, widget_order) VALUES ('$title', '$type', '$content', '$order')");
 		return $query;
 	}
+
+	public function selectWidgets(){
+		$query = $this->db->get('widgets');
+		return $query->result_array();
+	}
 }
