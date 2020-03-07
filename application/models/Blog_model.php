@@ -10,6 +10,13 @@ class Blog_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function getAllCategories(){
+		//$this->load->database();
+		$query = $this->db->get('categories');
+
+		return $query->result_array();
+	}
+
 	// Get Posts based on category passed for Blog Category Page
 	public function getCategoryPosts(){
 		

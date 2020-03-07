@@ -139,7 +139,14 @@ class Blog extends CI_Controller {
 
 	public function sidebar(){
 		$this->load->model('blog_model');
+		// Search Widget
 		$data['search'] = $this->blog_model->getWidget('search');
+		// Categories Widget
+		$data['categories'] = $this->blog_model->getWidget('categories');
+		if($data['categories']['widgetcount'] == 1){
+			$data['catres'] = $this->blog_model->getAllCategories();
+		}
+
 		echo "<pre>";
 		print_r($data);
 		echo "</pre>";

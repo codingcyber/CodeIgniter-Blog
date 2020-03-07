@@ -1,9 +1,9 @@
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
         <?php 
-          echo "<pre>";
-          print_r($sidebar);
-          echo "</pre>";
+          // echo "<pre>";
+          // print_r($sidebar);
+          // echo "</pre>";
          ?>
          <?php if($sidebar['search']['widgetcount'] == 1){ ?>
           <!-- Search Widget -->
@@ -19,42 +19,25 @@
             </div>
           </div>
         <?php } ?>
-
+        <?php if($sidebar['categories']['widgetcount'] == 1){ ?>
           <!-- Categories Widget -->
           <div class="card my-4">
             <h5 class="card-header">Categories</h5>
             <div class="card-body">
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                   <ul class="list-unstyled mb-0">
+                    <?php foreach ($sidebar['catres'] as $catr) {  ?>
                     <li>
-                      <a href="#">Web Design</a>
+                      <a href="<?php echo base_url('index.php/Blog/category/'); ?><?php echo $catr['id']; ?>"><?php echo $catr['title']; ?></a>
                     </li>
-                    <li>
-                      <a href="#">HTML</a>
-                    </li>
-                    <li>
-                      <a href="#">Freebies</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">JavaScript</a>
-                    </li>
-                    <li>
-                      <a href="#">CSS</a>
-                    </li>
-                    <li>
-                      <a href="#">Tutorials</a>
-                    </li>
+                    <?php } ?>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-
+        <?php } ?>
           <!-- Side Widget -->
           <div class="card my-4">
             <h5 class="card-header">Side Widget</h5>
