@@ -76,9 +76,11 @@ class Blog extends CI_Controller {
 			$data['user'] = $this->getUser();
 		}
 
+		$data['sidebar'] = $this->sidebar();
+
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
-		$this->load->view('frontend/category');
+		$this->load->view('frontend/category', $data);
 		$this->load->view('frontend/templates/sidebar');
 		$this->load->view('frontend/templates/footer');
 	}
@@ -92,9 +94,9 @@ class Blog extends CI_Controller {
 		if($data['userLogin']){
 			$data['user'] = $this->getUser();
 		}
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
+
+		$data['sidebar'] = $this->sidebar();
+		
 		if($data['postcount'] < 1){
 			redirect('Blog/404');
 		}
@@ -109,9 +111,15 @@ class Blog extends CI_Controller {
 	public function page(){
 		//echo "Blog Page Controller Method";
 		$this->load->helper('url');
+		$data['userLogin'] = $this->checkLogin();
+		if($data['userLogin']){
+			$data['user'] = $this->getUser();
+		}
+
+		$data['sidebar'] = $this->sidebar();
 		$this->load->view('frontend/templates/header');
 		$this->load->view('frontend/templates/navigation');
-		$this->load->view('frontend/page');
+		$this->load->view('frontend/page', $data);
 		$this->load->view('frontend/templates/sidebar');
 		$this->load->view('frontend/templates/footer');
 	}
@@ -137,7 +145,7 @@ class Blog extends CI_Controller {
 		}
 	}
 
-	public function sidebar(){
+	private function sidebar(){
 		$this->load->model('blog_model');
 		// Search Widget
 		$data['search'] = $this->blog_model->getWidget('search');
