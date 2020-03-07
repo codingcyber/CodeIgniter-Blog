@@ -47,28 +47,28 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="<?php echo base_url('index.php/Admin/Dashboard'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Categories<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Add Category</a>
+                                    <a href="<?php echo base_url('index.php/Admin/AddCategory'); ?>">Add Category</a>
                                 </li>
                                 <li>
-                                    <a href="#">View Categories</a>
+                                    <a href="<?php echo base_url('index.php/Admin/ViewCategories'); ?>">View Categories</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Articles<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Posts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Add Articles</a>
+                                    <a href="<?php echo base_url('index.php/Admin/AddPost'); ?>">Add Post</a>
                                 </li>
                                 <li>
-                                    <a href="#">View Articles</a>
+                                    <a href="<?php echo base_url('index.php/Admin/ViewPosts'); ?>">View Posts</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -77,16 +77,16 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Add Pages</a>
+                                    <a href="<?php echo base_url('index.php/Admin/AddPage'); ?>">Add Page</a>
                                 </li>
                                 <li>
-                                    <a href="#">View Pages</a>
+                                    <a href="<?php echo base_url('index.php/Admin/ViewPages'); ?>">View Pages</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Comments</a>
+                            <a href="<?php echo base_url('index.php/Admin/ViewComments'); ?>"><i class="fa fa-table fa-fw"></i> Comments</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Media</a>
@@ -95,10 +95,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Widgets<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Add Widgets</a>
+                                    <a href="<?php echo base_url('index.php/Admin/AddWidget'); ?>">Add Widget</a>
                                 </li>
                                 <li>
-                                    <a href="#">View Widgets</a>
+                                    <a href="<?php echo base_url('index.php/Admin/ViewWidgets'); ?>">View Widgets</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -107,10 +107,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Users<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Add User</a>
+                                    <a href="<?php echo base_url('index.php/Admin/AddUser'); ?>">Add User</a>
                                 </li>
                                 <li>
-                                    <a href="#">View Users</a>
+                                    <a href="<?php echo base_url('index.php/Admin/ViewUsers'); ?>">View Users</a>
                                 </li>
                                 <li>
                                     <a href="#">My Profile</a>
