@@ -22,7 +22,7 @@
         <?php if($sidebar['categories']['widgetcount'] == 1){ ?>
           <!-- Categories Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Categories</h5>
+            <h5 class="card-header"><?php echo $sidebar['categories']['widget']['title']; ?></h5>
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-12">
@@ -33,6 +33,44 @@
                     </li>
                     <?php } ?>
                   </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+        <?php if($sidebar['articles']['widgetcount'] == 1){ ?>
+          <!-- Articles Widget -->
+          <div class="card my-4">
+            <h5 class="card-header"><?php echo $sidebar['articles']['widget']['title']; ?></h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <ul class="list-unstyled mb-0">
+                    <?php foreach ($sidebar['postres'] as $postr) {  ?>
+                    <li>
+                      <a href="<?php echo base_url('index.php/Blog/post/'); ?><?php echo $postr['id']; ?>"><?php echo $postr['title']; ?></a>
+                    </li>
+                    <?php } ?>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+        <?php if($sidebar['pages']['widgetcount'] == 1){ ?>
+          <!-- Articles Widget -->
+          <div class="card my-4">
+            <h5 class="card-header"><?php echo $sidebar['pages']['widget']['title']; ?></h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <!-- <ul class="list-unstyled mb-0">
+                    <?php //foreach ($sidebar['pageres'] as $pager) {  ?>
+                    <li>
+                      <a href="<?php //echo base_url('index.php/Blog/page/'); ?><?php //echo $pager['id']; ?>"><?php //echo $pager['title']; ?></a>
+                    </li>
+                    <?php //} ?>
+                  </ul> -->
                 </div>
               </div>
             </div>

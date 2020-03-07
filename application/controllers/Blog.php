@@ -147,6 +147,18 @@ class Blog extends CI_Controller {
 			$data['catres'] = $this->blog_model->getAllCategories();
 		}
 
+		// Articles Widget
+		$data['articles'] = $this->blog_model->getWidget('articles');
+		if($data['articles']['widgetcount'] == 1){
+			$data['postres'] = $this->blog_model->getAllPosts();
+		}
+
+		// Pages Widget
+		$data['pages'] = $this->blog_model->getWidget('pages');
+		if($data['pages']['widgetcount'] == 1){
+			//$data['pageres'] = $this->blog_model->getAllPages();
+		}
+
 		echo "<pre>";
 		print_r($data);
 		echo "</pre>";
