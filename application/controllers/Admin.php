@@ -40,11 +40,16 @@ class Admin extends CI_Controller {
 	}
 
 	public function Dashboard(){
-		echo "<pre>";
-		print_r($this->session->userdata());
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($this->session->userdata());
+		// echo "</pre>";
 		$this->checkLogin();
 		$this->checkUserAdmin();
+
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/templates/navigation');
+		$this->load->view('admin/dashboard');
+		$this->load->view('admin/templates/footer');
 	}
 
 	private function checkLogin(){
@@ -67,7 +72,7 @@ class Admin extends CI_Controller {
 		$user = $this->admin_model->selectUser($this->session->id);
 
 		if(($user['role'] == 'administrator') || ($user['role'] == 'editor')){
-			echo "Admin or Editor";
+			//echo "Admin or Editor";
 		}else{
 			redirect('Blog');
 		}
