@@ -45,10 +45,15 @@ class Admin extends CI_Controller {
 		// echo "</pre>";
 		$this->checkLogin();
 		$this->checkUserAdmin();
+		$data['commentscount'] = $this->admin_model->selectComments(true);
+		$data['publishedcount'] = $this->admin_model->selectPostStatus('published');
+		$data['draftcount'] = $this->admin_model->selectPostStatus('draft');
+		$data['posts'] = $this->admin_model->selectPosts();
+		$data['comments'] = $this->admin_model->selectComments();
 
 		$this->load->view('admin/templates/header');
 		$this->load->view('admin/templates/navigation');
-		$this->load->view('admin/dashboard');
+		$this->load->view('admin/dashboard', $data);
 		$this->load->view('admin/templates/footer');
 	}
 

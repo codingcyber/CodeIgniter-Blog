@@ -15,12 +15,12 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge"><?php echo $commentscount; ?></div>
                                     <div>Total Comments!</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="<?php echo base_url('index.php/Admin/ViewComments'); ?>">
                             <div class="panel-footer">
                                 <span class="pull-left">View Comments</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -37,12 +37,12 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge"><?php echo $publishedcount; ?></div>
                                     <div>Published Articles!</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="<?php echo base_url('index.php/Admin/ViewPosts'); ?>">
                             <div class="panel-footer">
                                 <span class="pull-left">View Published Articles</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -59,12 +59,12 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
+                                    <div class="huge"><?php echo $draftcount; ?></div>
                                     <div>Draft Articles!</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="<?php echo base_url('index.php/Admin/ViewPosts'); ?>">
                             <div class="panel-footer">
                                 <span class="pull-left">View Draft Articles</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -97,12 +97,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php foreach ($posts as $post) { ?>
                                                 <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:29 PM</td>
-                                                    <td>$321.33</td>
+                                                    <td><?php echo $post['id']; ?></td>
+                                                    <td><?php echo $post['title']; ?></td>
+                                                    <td><?php echo $post['status']; ?></td>
+                                                    <td><?php echo $post['created']; ?></td>
                                                 </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -125,14 +127,16 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group">
+                                <?php foreach ($comments as $comment) { ?>
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                    <i class="fa fa-comment fa-fw"></i> <?php echo substr($comment['comment'], 0,10); ?>
+                                    <span class="pull-right text-muted small"><em><?php echo $comment['created']; ?></em>
                                     </span>
                                 </a>
+                                <?php } ?>
                             </div>
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Comments</a>
+                            <a href="<?php echo base_url('index.php/Admin/ViewComments'); ?>" class="btn btn-default btn-block">View All Comments</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>

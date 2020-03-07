@@ -53,6 +53,11 @@ class Admin_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function selectPostStatus($status){
+		$query = $this->db->get_where('posts', array('status' => $status));
+		return $query->num_rows();
+	}
+
 	public function deletePostCategories($pid){
 		$query = $this->db->delete('post_categories', array('pid' => $pid));
 		//return $query;
@@ -134,9 +139,13 @@ class Admin_model extends CI_Model {
 	}
 
 	// Comments
-	public function selectComments(){
+	public function selectComments($count=false){
 		$query = $this->db->query("SELECT comments.id, comments.comment, comments.status, comments.created, users.username, posts.title FROM comments JOIN users ON comments.uid=users.id JOIN posts ON comments.pid=posts.id");
-		return $query->result_array();
+		if($count == true){
+			return $query->num_rows();
+		}else{
+			return $query->result_array();
+		}
 	}
 
 	public function userRole($id){
