@@ -90,6 +90,8 @@ class Admin extends CI_Controller {
 
 	// Categories - Add, Edit, Update, View, Delete
 	public function AddCategory(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
 
 		$title = $this->input->post('title');
 		$description = $this->input->post('description');
@@ -120,6 +122,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function EditCategory($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['category'] = $this->admin_model->selectCategory($id);
 
@@ -130,6 +135,8 @@ class Admin extends CI_Controller {
 	}
 
 	public function UpdateCategory(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
 
 		$title = $this->input->post('title');
 		$description = $this->input->post('description');
@@ -157,6 +164,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function ViewCategories(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['categories'] = $this->admin_model->selectCategories();
 
@@ -167,7 +177,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function DeleteCategory($id){
-		echo $id;
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$res = $this->admin_model->deleteCategory($id);
 		if($res){
@@ -178,6 +190,9 @@ class Admin extends CI_Controller {
 
 	// Posts - Add, Edit, Update, View, Delete Post, Delete Post Pic
 	public function AddPost(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$title = $this->input->post('title');
 		$content = $this->input->post('content');
 		$categories = $this->input->post('categories');
@@ -240,6 +255,9 @@ class Admin extends CI_Controller {
     }
 
 	public function EditPost($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['post'] = $this->admin_model->selectPost($id);
 		$data['categories'] = $this->admin_model->selectCategories();
@@ -252,6 +270,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function UpdatePost(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$title = $this->input->post('title');
 		$content = $this->input->post('content');
 		$categories = $this->input->post('categories');
@@ -287,6 +308,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function ViewPosts(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['posts'] = $this->admin_model->selectPosts();
 
@@ -297,6 +321,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function DeletePost($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$post = $this->admin_model->selectPost($id);
 		//var_dump($post);
@@ -313,6 +340,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function deletePostPic($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$post = $this->admin_model->selectPost($id);
 		//var_dump($post);
@@ -326,6 +356,8 @@ class Admin extends CI_Controller {
 
 	// Users - Add, Edit, Update, View, Delete
 	public function AddUser(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
 
 		$username = $this->input->post('username');
 		$fname = $this->input->post('fname');
@@ -359,6 +391,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function EditUser($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['user'] = $this->admin_model->selectUser($id);
 		$this->load->view('admin/templates/header');
@@ -368,6 +403,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function UpdateUser(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$fname = $this->input->post('fname');
 		$lname = $this->input->post('lname');
 		$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
@@ -383,6 +421,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function ViewUsers(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['users'] = $this->admin_model->selectUsers();
 
@@ -393,6 +434,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function DeleteUser($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$res = $this->admin_model->deleteUser($id);
 		if($res){
@@ -403,6 +447,9 @@ class Admin extends CI_Controller {
 
 	// Comments
 	public function ViewComments(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['comments'] = $this->admin_model->selectComments();
 		$data['role'] = $this->admin_model->userRole($this->session->id);
@@ -414,6 +461,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function processComment($id, $status){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 
 		if(($status == 'approved') || ($status == 'disapproved')){
@@ -434,6 +484,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function EditComment($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['comment'] = $this->admin_model->selectComment($id);
 
@@ -444,6 +497,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function UpdateComment(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$comment = $this->input->post('comment');
 		$status = $this->input->post('status');
 		$id = $this->input->post('id');
@@ -459,6 +515,9 @@ class Admin extends CI_Controller {
 	// Widgets - Add, Edit, Update, View, Delete
 
 	public function AddWidget(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$title = $this->input->post('title');
 		$type = $this->input->post('type');
 		$content = $this->input->post('content');
@@ -493,6 +552,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function ViewWidgets(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['widgets'] = $this->admin_model->selectWidgets();
 
@@ -503,6 +565,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function EditWidget($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$this->load->model('admin_model');
 		$data['widget'] = $this->admin_model->selectWidget($id);
 
@@ -513,6 +578,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function UpdateWidget(){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+
 		$title = $this->input->post('title');
 		$type = $this->input->post('type');
 		$content = $this->input->post('content');
@@ -540,6 +608,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function DeleteWidget($id){
+		$this->checkLogin();
+		$this->checkUserAdmin();
+		
 		$this->load->model('admin_model');
 		$res = $this->admin_model->deleteWidget($id);
 		if($res){
