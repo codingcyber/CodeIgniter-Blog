@@ -159,9 +159,9 @@ class Blog extends CI_Controller {
 			//$data['pageres'] = $this->blog_model->getAllPages();
 		}
 
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
+		// HTML Widgets
+		$data['html'] = $this->blog_model->getWidgets('html');
+
 		return $data;
 	}
 
