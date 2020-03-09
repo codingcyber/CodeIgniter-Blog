@@ -45,7 +45,7 @@
                                             <label>User Role</label>
                                             <select name="role" class="form-control">
                                                 <option value="">Select User Role</option>
-                                                <option value="subscriber" <?php if($user['role'] == 'subsriber'){ echo "selected"; } ?>>Subscriber</option>
+                                                <option value="subscriber" <?php if($user['role'] == 'subscriber'){ echo "selected"; } ?>>Subscriber</option>
                                                 <option value="editor" <?php if($user['role'] == 'editor'){ echo "selected"; } ?>>Editor</option>
                                                 <option value="administrator" <?php if($user['role'] == 'administrator'){ echo "selected"; } ?>>Administrator</option>
                                             </select>

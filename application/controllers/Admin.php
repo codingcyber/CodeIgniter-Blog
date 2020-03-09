@@ -198,6 +198,7 @@ class Admin extends CI_Controller {
 		$categories = $this->input->post('categories');
 		$status = $this->input->post('status');
 		$slug = $this->input->post('slug');
+		$uid = $this->session->id;
 
 		// Form Validations
 		$this->load->library('form_validation');
@@ -218,7 +219,7 @@ class Admin extends CI_Controller {
 			if($upload['response']){
 				$filename = $upload['uploadresponse']['file_name'];
 				$this->load->model('admin_model');
-				$res = $this->admin_model->insertPost($title, $content, $status, $slug, $categories, $filename);
+				$res = $this->admin_model->insertPost($title, $content, $status, $slug, $categories, $filename, $uid);
 				if($res){
 					$this->session->set_flashdata('posts', '<div class="alert alert-success">Post Added Successfully.</div>');
 					redirect('Admin/ViewPosts');
@@ -290,6 +291,7 @@ class Admin extends CI_Controller {
 
 		if($this->form_validation->run() == FALSE){
 			// nothing to do
+			$this->EditPost($id);
 		}else{
 			$upload = $this->fileUpload('image');
 			// Insert into Posts table
@@ -610,7 +612,7 @@ class Admin extends CI_Controller {
 	public function DeleteWidget($id){
 		$this->checkLogin();
 		$this->checkUserAdmin();
-		
+
 		$this->load->model('admin_model');
 		$res = $this->admin_model->deleteWidget($id);
 		if($res){

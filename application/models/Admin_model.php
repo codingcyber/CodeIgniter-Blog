@@ -35,8 +35,8 @@ class Admin_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function insertPost($title, $content, $status, $slug, $categories, $filename){
-		$query = $this->db->query("INSERT INTO posts (title, content, status, slug, pic) VALUES ('$title', '$content', '$status', '$slug', '$filename')");
+	public function insertPost($title, $content, $status, $slug, $categories, $filename, $uid){
+		$query = $this->db->query("INSERT INTO posts (title, content, status, slug, pic, uid) VALUES ('$title', '$content', '$status', '$slug', '$filename' , $uid)");
 		$postid = $this->db->insert_id();
 		$this->insertPostCategories($categories, $postid);
 		return $query;
