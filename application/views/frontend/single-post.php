@@ -25,7 +25,11 @@
           <hr>
 
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+          <?php if(isset($post['pic']) & !empty($post['pic'])){ ?>
+            <img class="card-img-rounded" src="<?php echo base_url('assets/media/'); ?><?php echo $post['pic']; ?>" alt="Card image cap" width="100%">
+          <?php }else{ ?>
+          <img class="card-img-rounded" src="http://placehold.it/900x300" alt="Card image cap">
+          <?php } ?>
 
           <hr>
 

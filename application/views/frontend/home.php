@@ -18,11 +18,15 @@
           
           <!-- Blog Post -->
           <div class="card mb-4">
+            <?php if(isset($post['pic']) & !empty($post['pic'])){ ?>
+              <img class="card-img-top" src="<?php echo base_url('assets/media/'); ?><?php echo $post['pic']; ?>" alt="Card image cap">
+            <?php }else{ ?>
             <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <?php } ?>
             <div class="card-body">
               <h2 class="card-title"><?php echo $post['title']; ?></h2>
               <p class="card-text"><?php echo $post['content']; ?></p>
-              <a href="<?php base_url(); ?>Blog/post/<?php echo $post['id']; ?>" class="btn btn-primary">Read More &rarr;</a>
+              <a href="<?php echo base_url('index.php/Blog/post/'); ?><?php echo $post['id']; ?>" class="btn btn-primary">Read More &rarr;</a>
             </div>
             <div class="card-footer text-muted">
               Posted on <?php echo $post['created']; ?> by
